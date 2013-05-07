@@ -1,0 +1,43 @@
+{% extends 'admin/base_site.html' %}
+{% load i18n %}
+
+{% block extrahead %}{{ block.super }}{% comment %}
+<script type='text/javascript' src="{% admin_media_prefix %}js/jquery.js"></script>
+<script type='text/javascript' src="{{ATLANTE_CMS_MEDIA_URL}}admin/js/blocks_actions.js"></script>
+<script type='text/javascript' src="{{ATLANTE_CMS_MEDIA_URL}}admin/js/blocks_checked.js"></script>{% endcomment %}
+{% endblock %}
+
+{% block breadcrumbs %}{% if not is_popup %}
+<a href="{% url 'admin:index' %}">{% trans "Home" %}</a> &rsaquo;
+<a href="{% url 'admin:conf-url' %}">{% trans "Configuration" %}</a> &rsaquo;
+{% trans "Models workflows" %}
+{% endif %}{% endblock %}
+
+{% block content %}
+<div id='content-main'>
+	{% if permissions %}
+	<form action="" method="post" id="objects_list">{% csrf_token %}
+	
+	{% for app_label, model_name, model_workflow in models %}
+	<fieldset>
+		<p>
+		   <input type="hidden" name="{{app_label}}__{{model_name}}" value="{{app_label}}__{{model_name}}" />{% trans 'Content type' %}: {{model_name|capfirst}}
+		</p>
+		<div>
+			<label for="workflow__{{app_label}}__{{model_name}}">{% trans 'Workflow' %}: </label>
+			<select id="workflow__{{app_label}}__{{model_name}}" name="workflow__{{app_label}}__{{model_name}}">
+				<option value="null">--</option>
+				{% for workflow in workflows %}
+				<option value="{{workflow.id}}" {%if model_workflow.name == workflow.name %}selected="selected"{% endif %}>{{workflow.name}}</option>
+				{% endfor %}
+			</select>
+		</div>
+	</fieldset>
+	{% endfor %}
+	<input type="submit" value="{% trans 'Save' %}">
+	</form>
+	{% else %}
+	<p>{% trans "Access denied" %}</p>
+	{% endif %}
+</div>
+{% endblock %}

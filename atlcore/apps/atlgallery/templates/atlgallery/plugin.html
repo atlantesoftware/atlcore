@@ -1,0 +1,22 @@
+{% load sekizai_tags admin_static siteutils %}
+
+{% addtoblock "css"%}<link rel="stylesheet" type="text/css" media="all" href="{% static "atlgallery/css/style.css" %}" /> {% endaddtoblock %}
+<div class="atlgallery">
+    <h2 class="section_header">{{instance.title}}</h2>
+    <div class="item_list">
+        {% for item in instance.folder.childrens %}
+            <div class="gallery_album">
+                {% if item.instance_class_name == 'folder' %}
+                    {% if item.image %}
+                        <a href="/{{ instance.album_page.get_slug }}{{ item.cms_absolute_url }}" >
+                            <img class="field_image" src="{% get_image_crop item.image 122 122 %}" />
+                        </a>
+                    {% endif %}
+                {% endif %}
+                <div class="field_albums_amount">({{ item.get_instance.childrens|length }} fotos)</div>
+                <div class="field_album_title"><a href="/{{ instance.album_page.get_slug }}{{ item.cms_absolute_url }}" >{{ item.title }}</a></div>
+
+            </div>
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,28 @@
+.translation_field{
+	float:left;
+	width:50%;
+}
+
+.original_field{
+    float:right;
+	width:50%;
+}
+
+.original_field > div{
+    padding-left:20px;
+}
+
+form .aligned .original_field p,
+form .aligned .original_field ul{
+	padding:0;
+	margin:0;
+}
+
+#id_description_tbl,
+#id_body_tbl{
+	width:670px !important;
+}
+
+.original_field img{
+	max-width:300px;
+}

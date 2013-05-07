@@ -1,0 +1,19 @@
+{% extends "admin/details.html" %}
+{% load i18n %}
+
+{% block main-content %}
+    <div id="details">
+        {% if object.creator %}
+            <div class="field_creator">{{object.creator}}</div>
+        {% endif %}
+        {% if object.contributor %}
+            <div class="field_contributor">{{object.contributor}}</div>
+        {% endif %}
+        {% if object.image %}
+            <a href="{{object.image.url}}"><img class="field_image" src="{{object.image.url}}" alt="{{object.title}}" title="{{object.title}}" /></a>
+        {% endif %}
+        {% if object.description %}
+            <div class="description">{{object.description|safe}}</div>
+        {% endif %}
+    </div>
+{% endblock %}

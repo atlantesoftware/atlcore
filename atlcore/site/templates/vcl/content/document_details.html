@@ -1,0 +1,7 @@
+	<div id="document_details">
+		{% include 'vcl/content/include/details.html' %}
+		
+		{% if component.source.body %}
+			<div class="field_body">{{component.source.body|safe}}</div>
+		{% endif %}
+	</div>

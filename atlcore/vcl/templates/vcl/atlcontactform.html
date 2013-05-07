@@ -1,0 +1,33 @@
+{% load siteutils admin_static dajaxice_templatetags %}
+
+{% dajaxice_js_import %}
+
+<div id="{{component.id}}" class="{{component.html_class}} atl_component">
+	<div id="{{component.id}}_wrapper">
+			<div id="{{component.id}}_ajax_panel">
+				<div id="{{component.id}}_ajax_loading"><img src="{%static 'common/images/loading.gif'%}" alt="Loading..." /></div>
+				<div id="{{component.id}}_ajax_success">
+					<div id="{{component.id}}_ajax_error_message">Mensaje</div>
+				</div>
+				<div id="{{component.id}}_ajax_error">
+				</div>
+				<button onclick="atl_ajax_close_message('{{component.id}}')">ok</button>
+			</div>
+
+			{% if component.title %}
+				<h2>{{component.title}}</h2>
+			{% endif %}
+			
+			<form id="{{component.id}}_form" action="" method="post" accept-charset="utf-8"> 
+				{% csrf_token%}
+				<input id="id_name" required="true" type="text" name="name" maxlength="50" onblur="AtlContactForm_update_data('id_name', 'Nombre')" value="Nombre" onclick="AtlContactForm_clear_data('id_name', 'Nombre')"  />
+				<input type="email" required="true" name="email" id="id_email" value="nombre@dominio.com" onblur="AtlContactForm_update_data('id_email', 'nombre@dominio.com')" onclick="AtlContactForm_clear_data('id_email', 'nombre@dominio.com')"/>
+				<textarea id="id_message" required="true" rows="10" cols="40" name="message" onblur="AtlContactForm_update_data('id_message', 'Mensaje')" onclick="AtlContactForm_clear_data('id_message', 'Mensaje')">Mensaje</textarea>
+				{% comment %}
+				{{component.form.captcha}}
+				{% endcomment%}				
+				<input id="{{component.id}}_form_submit" type="button" onclick="atlcontenttype_send_form();" value="{{component.submit_button_text}}"></input>
+			</form>
+			
+	</div>
+</div>

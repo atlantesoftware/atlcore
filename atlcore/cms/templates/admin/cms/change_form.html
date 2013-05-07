@@ -1,0 +1,51 @@
+{% extends "admin/change_form.html" %}
+{% load i18n object_tools admin_static %}
+
+{% block extrahead %}{{ block.super }}
+
+<script type='text/javascript' src="{% static "atlcms/js/object_actions.js" %}"></script>
+<script type='text/javascript'>
+    jQuery(document).ready(function(){
+        parent_widget = jQuery('#id_parent').children("[value={{container_id}}]");
+        parent_widget_container = jQuery('.form-row.parent');
+        parent_widget.attr('selected', 'selected');
+        parent_widget_container.hide();
+		
+		site_widget = jQuery('#id_sites');
+		site_widget_container = jQuery('.form-row.sites')
+		if (site_widget.children().length == 1) {
+			jQuery(site_widget.children()[0]).attr('selected', 'selected');
+			site_widget_container.hide();
+		}
+		
+		/* Parte del owner */
+		owner_widget = jQuery('#id_owner');
+        owner_widget_container = jQuery('.form-row.owner');
+        if ($(owner_widget).val() == ""){
+        	$(owner_widget).val('{{user.id}}');
+        }
+        
+        
+		/*Para evitar que se le de dos veces al submit de los formularios al guardar*/        
+        $("div#main-content form").submit(function() {
+	    	$("div.submit-row input").attr("disabled", "disabled");
+	    });
+
+        
+        owner_widget_container.hide();
+    });            
+</script>
+{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block object-tools %}
+<ul class="object-tools border-bottom">
+    {% object_tools 'change' %}        
+    <li class='clear'></li>
+</ul>
+{% endblock %}
+
+{% block sidebar %}
+{% include "admin/cms/includes/related.html" %}
+{% endblock %}

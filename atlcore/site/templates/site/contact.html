@@ -1,0 +1,159 @@
+{% extends templateParent|default:"site/main.html" %}
+
+{% block styles %}
+	{{block.super}}
+	<link rel="stylesheet" type="text/css" href="{{ATL_MEDIA_URL}}site/css/contact.css" />
+{% endblock %}
+
+
+
+{% block main %}
+
+	<form id = "formContact" action="/contact/"  method="post">{% csrf_token %}
+		<p>
+			Le responderemos en la mayor brevedad posible.<br/> Estamos a su disposición.
+		</p>
+		
+		<div class="formLeft">
+			
+			<input id="next" name="next" type="hidden" class="next" value='{{url_short}}'/>
+			
+			{{form.name}}
+			
+		    {{form.email}}
+		    
+		</div>
+	    
+	    
+	    <div class="formRight">
+	    	
+	    	{{form.message}}
+	    
+	        {% if form.captcha.errors %}{{ form.captcha.errors }}{% endif %}
+	        
+	        <div class="captcha">{{form.captcha }}</div>
+	        
+	        <input class="submit  {{LANGUAGE_CODE}}" type="submit"  value="ENVIAR"/>
+	        
+	    </div>
+	    
+	    <p class="error">
+	    	<br/>
+			{{message}}
+	    </p>
+	</form>
+	
+	
+	<script type="text/javascript">
+	$(function(){
+		
+		$('form input[type="text"]').each(function() {
+			if($(this).attr("value") == ""){
+				if($(this).attr("name") == "name"){ 
+					$(this).attr("value","NOMBRE");
+				}
+			
+				if($(this).attr("name") == "email"){
+					$(this).attr("value","EMAIL");
+				}
+				
+				if($(this).attr("name") == "captcha_1"){
+					$(this).attr("value","CAPTCHA");
+				}
+			}
+		});
+		
+		
+		$('form textarea').each(function() {
+		  	if($(this).attr("value") == ""){
+		  		if($(this).attr("name") == "message"){
+		  			$(this).attr("value","MENSAJE");
+		  		}
+			}
+		});
+		
+	
+		$('form input[type="text"]').focus(function() {
+			if($(this).attr("value") == "NOMBRE"){
+				$(this).attr("value","");
+			}
+			
+			if($(this).attr("value") == "EMAIL"){
+				$(this).attr("value","");
+			}
+		});
+		
+		
+		$('form textarea').focus(function() {		
+			if($(this).attr("value") == "MENSAJE"){
+				$(this).attr("value","");
+			}
+		});
+		
+		
+		$('form input[type="text"]').blur(function() {
+			if($(this).attr("value") == ""){
+				if($(this).attr("name") == "name"){ 
+					$(this).attr("value","NOMBRE");
+				}
+			
+				if($(this).attr("name") == "email"){
+					$(this).attr("value","EMAIL");
+				}
+			}
+		});
+		
+		$('form textarea').blur(function() {
+		  	if($(this).attr("value") == ""){
+		  		if($(this).attr("name") == "message"){
+		  			$(this).attr("value","MENSAJE");
+		  		}
+			}
+		});
+		
+		var default_value_captcha = "CAPTCHA";
+		
+		$('form #id_captcha_1').focus(function() {
+			if($(this).attr("value") == default_value_captcha){
+				$(this).attr("value","");
+			}
+		});
+		
+		$('form #id_captcha_1').blur(function() {
+		  if($(this).attr("value") == ""){
+		  		$(this).attr("value",default_value_captcha);
+			}
+		});
+	
+	$("form#formContact").submit(function(event){
+			var name = $("form#formContact input#id_name").val();
+			
+			var emailp = $("form#formContact input#id_email").val();
+			
+			var commentsp = $("form#formContact textarea").val();
+			
+			var captcha_0 = $("form#formContact #id_captcha_0").val();
+			
+			var captcha_1 = $("form#formContact #id_captcha_1").val();
+			
+			if (captcha_1 =="" || captcha_1 =="captcha" ){
+				alert("Debe entrar un captcha válido.");
+				return false;
+			} else if (emailp =="" || emailp =="EMAIL" || commentsp == "" || commentsp == "MENSAJE" || name == "" || name == "NOMBRE"){
+				alert("Debe entrar su nombre, correo electrónico y el mensaje a enviar.");
+				return false;
+			}
+			return true;
+	
+	});
+	
+	
+	}); 
+	</script>
+	
+	
+
+
+
+
+{% endblock main %}

@@ -1,0 +1,20 @@
+	<div id="details">
+		
+		{% include 'vcl/content/include/details.html' %}
+		
+		{% if component.data_provider.body %}
+			<div class="field_body">{{component.data_provider.body|safe}}</div>
+		{% endif %}
+		
+		{% if component.data_provider.getChildren|length > 0 %}
+		<ul class="children">
+		{% for child in component.data_provider.getChildren %}
+		<li>
+			<a href="{{child.get_absolute_url}}" {% if child.instance_class_name == 'file' %} target="{{child.id}}" {%endif%}>
+				{{child.title}}
+			</a>
+		</li>
+		{% endfor %}
+		{% endif %}
+		</ul>
+	</div>

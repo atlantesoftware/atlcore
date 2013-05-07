@@ -1,0 +1,21 @@
+{% load sekizai_tags admin_static%}
+
+{% addtoblock "css"%}<link rel="stylesheet" type="text/css" media="all" href="{% static "news_list_box/css/news_list_box.css" %}" /> {% endaddtoblock %}
+<h2 class="section_header">{{instance.title}}</h2>
+<div class="news_list_box">
+	<ul>
+	{% for news in news_list %}
+		<li>
+			{% if news.image and instance.show_image %}
+				<a href="{{news.cms_absolute_url}}"><img class="field_image" src="{{news.image.url}}"/></a>
+			{% endif %}
+			<h3 class="field_title"><a href="{{news.cms_absolute_url}}">{{news.title}}</a></h3>
+			{% if instance.show_description%}
+            <div class="field_description">
+				{{news.description|safe}}
+            </div>
+			{% endif %}
+		</li>
+	{% endfor %}
+	</ul>
+</div>

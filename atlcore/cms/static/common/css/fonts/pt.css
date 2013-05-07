@@ -1,0 +1,60 @@
+@font-face {
+  font-family: 'PT Sans Caption';
+  font-style: normal;
+  font-weight: normal;
+  src: local('PT Sans Caption'), local('PT'), url('/static/common/fonts/PTC55f.ttf') format('truetype');
+}
+
+
+@font-face {
+  font-family: 'PT Sans Caption';
+  font-style: normal;
+  font-weight: bold;
+  src: local('PT Sans Caption'), url('/static/common/fonts/PTC75F.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PT Sans Narrow';
+  font-style: normal;
+  font-weight: normal;
+  src: local('PT Sans Narrow'), url('/static/common/fonts/PTN57F.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PT Sans Narrow';
+  font-style: normal;
+  font-weight: bold;
+  src: local('PT Sans Narrow'), url('/static/common/fonts/PTN77F.ttf') format('truetype');
+}
+
+
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: normal;
+  src: local('PT Sans'), url('/static/common/fonts/PTS55F.ttf') format('truetype');
+}
+
+
+@font-face {
+  font-family: 'PT Sans';
+  font-style: italic;
+  font-weight: normal;
+  src: local('PT Sans Narrow'), url('/static/common/fonts/PTS56F.ttf') format('truetype');
+}
+
+
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: bold;
+  src: local('PT Sans Narrow'), url('/static/common/fonts/PTS75F.ttf') format('truetype');
+}
+
+
+@font-face {
+  font-family: 'PT Sans';
+  font-style: italic;
+  font-weight: bold;
+  src: local('PT Sans Narrow'), url('/static/common/fonts/PTS76F.ttf') format('truetype');
+}

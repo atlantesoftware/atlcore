@@ -1,0 +1,43 @@
+{% load i18n get_value %}
+<table class="objects">
+	<thead>
+		<tr class="border-bottom">
+			<th class="obj_checked"></th>
+			<th class="obj_icon"></th>
+			<th class="obj_title">{% trans 'objects' %}</th>
+			{% if component.cols %}
+			{% for key, value in component.cols.items %}
+			<th>{{key}}<th>
+			{% endfor %}		
+			{% else %}
+			<th>ID<th>
+			<th>Name<th>
+			<th>URL<th>
+			{% endif %}
+		</tr>
+	</thead>
+	<tbody>
+	{% for node in component.nodes %}
+		<tr class="{% cycle 'row2' 'row1' %}" id="{{node.opts.app_label}}-{{node.opts.module_name}}-{{node.id}}">
+		    <td class="obj_checked">
+		    	<input type="checkbox" name="s_objects" value="{{node.opts.app_label}}__{{node.opts.module_name}}__{{node.id}}" />
+				<input type="hidden" value="True" name="add_permission" class="add_permission" id="add_permission_{{obj.id}}" />
+				<input type="hidden" value="True" name="read_permission" class="read_permission" id="read_permission_{{obj.id}}" />
+				<input type="hidden" value="True" name="change_permission" class="change_permission" id="change_permission_{{obj.id}}" />
+				<input type="hidden" value="True" name="delete_permission" class="delete_permission" id="delete_permission_{{obj.id}}" />				    	
+			</td>			
+			<td class="obj_icon"><a href="{{node.url}}"><img src="{{ATL_MEDIA_URL}}admin/images/icons/{{node.opts.module_name}}.gif" alt="{{node.opts.module_name}}" title="{{node.opts.object_name}}" /></a></td>
+			<td class="obj_title"><a href="{{node.url}}">{{node.text}}</a></td>
+			{% if component.cols %}
+			{% for key, value in component.cols.items %}
+			<td class="{{key}}">{{node|get_value:value}}<td>
+			{% endfor %}		
+			{% else %}
+			<td>{{node.id}}<td>
+			<td>{{node.text}}<td>
+			<td>{{node.url}}<td>
+			{% endif %}		
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>

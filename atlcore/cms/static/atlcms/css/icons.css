@@ -1,0 +1,129 @@
+.ui-button-icon-primary.ui-icon.atlIcon {
+	background-image:url(../images/icons.gif);
+	height:20px;
+	width:20px;
+}
+
+
+div.atlIcon {
+	background-image:url(../images/icons.gif);
+	height:20px;
+	width:20px;
+}
+
+div.atlIcon:hover {
+	background-image:url(../images/icons_hover.gif);
+}
+
+
+.atlIcon span{
+	display:none;
+}
+
+div.icon-Folder {
+	background-position:0px 0px;
+	
+}
+
+div.icon-File {
+	background-position:-20px 0px;	
+}
+
+div.icon-Document {
+	background-position:-40px 0px;	
+}
+
+div.icon-Video {
+	background-position:-60px 0px;	
+}
+
+div.icon-Banner {
+	background-position:-80px 0px;	
+}
+
+
+div.icon-Link {
+	background-position:-140px 0px;	
+}
+
+
+div.icon-Audio {
+	background-position:-120px 0px;	
+}
+
+div.icon-Image {
+	background-position:-100px 0px;	
+}
+
+div.icon-News {
+	background-position:-160px 0px;	
+}
+
+
+/******/
+div.toolsIcon {
+	background-image:url(../images/icons.gif);
+	height:20px;
+	width:20px;
+}
+
+.disable div.toolsIcon {
+	background-image:url(../images/icons_hover.gif);
+}
+
+div.icon-Add, .icon-Add {
+	background-position:0px -20px;	
+}
+
+div.icon-Change {
+	background-position:-20px -20px;
+}
+
+div.icon-ViewLink {
+	background-position:-120px -20px;
+}
+
+div.icon-Viewsitelink {
+	background-position:-140px -20px;
+}
+
+div.icon-deletelink {
+	background-position:-40px -20px;
+}
+
+div.icon-copylink {
+	background-position:-60px -20px;
+}
+
+div.icon-cutlink {
+	background-position:-80px -20px;
+}
+
+div.icon-pastelink {
+	background-position:-100px -20px;
+}
+
+div.icon-detaillink {
+	background-position:-220px 0px;
+}
+
+div.icon-summarylink {
+	background-position:-180px 0px;
+}
+
+div.icon-thumbnaillink {
+	background-position:-200px 0px;
+}
+
+.disable div.atlIcon{
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
+}
+
+.disable div.atlIcon:hover{
+	background-image:url(../images/icons.gif);
+}
+
+

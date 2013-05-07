@@ -1,0 +1,23 @@
+#content_details {
+	margin-left:17px;
+	margin-right: 17px;
+	margin-top: 10px;
+}
+
+#content_details .field_image {
+	float:left;
+	margin-right: 10px;
+}
+
+#content_details .field_body p, #content_details .field_description  p {
+	font-size:14px;
+	line-height: 1.3em;
+	margin-bottom:1em;
+}
+
+#content_details .field_description {
+	font-weight: bold;
+	
+}
+
+

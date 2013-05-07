@@ -1,0 +1,33 @@
+body{
+	margin:0;
+	padding:0;
+}
+
+body #site_wrapper {
+	margin:0 auto;
+	width:1002px;
+	position:relative;
+	line-height: 1.4em;
+}
+
+h1, h2, h3 {
+	margin: 0px;
+	padding: 0px;
+	line-height: 1.2em;
+}
+
+ul, li {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	color:inherit;
+	text-decoration: none;
+}
+
+img {
+	border:0;
+	margin:0;
+	padding:0;
+}

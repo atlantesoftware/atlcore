@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}">
+	<head>
+		
+	{% load i18n admin_static%}
+	    <title>{% block title %}{{ dc.title }}{% endblock %}</title>
+	    <meta name="Description" content='{{dc.description|striptags|truncatewords:150}}' />
+	    <meta name="Keywords" content="{{dc.keywords}}" />
+		<meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+		<meta name="Author" content="{{dc.author}}" />
+		<meta name="Copyright" content="{{dc.copyright}}" />
+		<meta name="Creator" content="{{dc.creator}}" />
+		<meta name="Distribution" content="Global" />
+		<meta name="Rating" content="General" />
+
+		
+<!-- begin styles block -->
+	{% block styles %}
+	    <link rel="stylesheet" type="text/css" href="{% static "site/css/base.css" %}" />
+	    <!-- Grid 960 styles-->
+	    <link rel="stylesheet" type="text/css" media="all" href="{% static "grid-960/css/reset.css"%}" />
+  		<link rel="stylesheet" type="text/css" media="all" href="{% static "grid-960/css/text.css"%}" />
+  		<link rel="stylesheet" type="text/css" media="all" href="{% static "grid-960/css/960.css"%}" />
+		<link rel="stylesheet" type="text/css" href="{% static "skins/" %}{{skin.slug}}/css/base.css" />
+		<!-- Components styles environment -->
+		{% for css in media_environment.styles %}
+			<link id="{{css.keys|first}}" href="{% static css.values|first %}" type="text/css" rel="stylesheet"> </link>
+		{% endfor %}
+		<!-- End Components styles environment -->
+
+	{% endblock %}
+<!-- end styles block -->	
+	
+<!-- begin scripts block -->	
+	
+	{% block scripts %}
+		<script id="lib_atlcore" type="text/javascript" src="{% static "common/js/atlcore.js" %}"></script>
+		<!-- Components scripts environment -->
+		{% for script in media_environment.scripts %}
+			<script id="{{script.keys|first}}" src="{% static script.values|first %}" type="text/javascript"></script>
+		{% endfor %}
+		<!-- end Components scripts environment -->
+
+
+	{% endblock %}
+<!-- end scripts block -->	
+
+	{% block extrahead %}
+	{% endblock %}
+<!-- begin google_analytics_code -->	
+	{% if site_profile.google_analytics_script %}
+		{{site_profile.google_analytics_script|safe}}
+	{% endif %}
+<!-- end google_analytics_code -->
+	</head>
+
+	<body class="{% block bodyclass %}{% endblock %}">
+		{% block content %}
+		{% endblock %}
+	</body>
+</html>

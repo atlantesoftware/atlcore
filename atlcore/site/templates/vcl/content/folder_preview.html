@@ -1,0 +1,18 @@
+	<div class="preview">
+		{% if component.source.creator %}
+			<div class="field_creator">{{component.source.creator}}</div>
+		{% endif %}
+		<h1 class="field_title">{{component.source.title}}</h1>
+		{% if component.source.date %}
+			<div class="field_date">{{component.source.date|date:"d.m.Y"}}</div>
+		{% endif %}
+		{% if component.source.source %}
+			<div class="field_source">{{component.source.source}}</div>
+		{% endif %}
+		{% if component.source.contributor %}
+			<div class="field_contributor">{{component.source.contributor}}</div>
+		{% endif %}
+		{% if component.source.description %}
+			<div class="field_description">{{component.source.description|safe}}</div>
+		{% endif %}
+	</div>

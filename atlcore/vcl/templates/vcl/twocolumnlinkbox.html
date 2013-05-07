@@ -1,0 +1,27 @@
+<div id="{{component.id}}" class="atl_component {{component.html_class}}">
+	<div class="atl_component_wrapper">
+		<h3>{{component.title}}</h3>
+		<ul>
+			{% for item in component.data_provider %}
+				{% if forloop.counter <= component.column_items %}
+					<li class="{% if forloop.first %}first{% else %}{% if forloop.last %}last{% endif%}{% endif%}{%if item == component.selected %}selected{% endif %}"> 
+						<h4 class="item_title"><a href="{{item.url}}"  target="{% if item.target %}{{item.id}} {%endif%}">{{item.title}}:&nbsp;</a></h4>
+						<a href="{{item.url}}"  target="{% if item.target %}{{item.id}} {%endif%}">{{item.description|safe}}</a>
+						
+					</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+		<ul>
+			{% for item in component.data_provider %}
+				{% if forloop.counter > component.column_items %}
+				<li class="{% if forloop.first %}first{% else %}{% if forloop.last %}last{% endif%}{% endif%}{%if item == component.selected %}selected{% endif %}"> 
+					<h4 class="item_title"><a href="{{item.url}}" target="{% if item.target %}{{item.id}} {%endif%}">{{item.title}}:&nbsp;</a></h4>
+					<a href="{{item.url}}"  target="{% if item.target %}{{item.id}} {%endif%}">{{item.description|safe}}</a>
+					
+				</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+	</div>
+</div>

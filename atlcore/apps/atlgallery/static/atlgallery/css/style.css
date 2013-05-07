@@ -1,0 +1,25 @@
+.atlgallery .item_list .gallery_album{
+    float: left;
+    width: 122px;
+    padding: 10px;
+    margin-right: 60px;
+}
+
+.atlgallery .item_list .gallery_album img.field_image{
+    width: 122px;
+    padding: 10px;
+    border: 2px solid #21699a;
+    background-color: #195278;
+    margin-right: 60px;
+}
+
+.atlgallery .item_list .gallery_album .field_albums_amount{
+    font-size: 13px;
+    color: #c59e28;
+}
+
+.atlgallery .item_list .gallery_album .field_album_title{
+    font-size: 13px;
+    color: #b5b5b5;
+}
+

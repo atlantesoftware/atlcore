@@ -1,0 +1,29 @@
+{% extends base_detail_template|default:"contenttype/base.html" %}
+{% load i18n %}
+
+{% block styles %}
+	{{block.super}}
+	<link rel="stylesheet" type="text/css" href="{{ATL_MEDIA_URL}}cms/css/news_details.css" />
+{% endblock %}
+
+{% block main-content %}
+	<div id="details">
+		<h1 class="field_title">{{object.title}}</h1>
+		{% if object.creator %}
+			<div class="field_creator">{{object.creator}}</div>
+		{% endif %}
+		{% if object.contributor %}
+			<div class="field_contributor">{{object.contributor}}</div>
+		{% endif %}
+		{% if object.image %}
+			<a href="{{object.image.get_file_url}}"><img class="field_image" src="{{MEDIA_URL}}/{{object.image}}" alt="{{object.title}}" title="{{object.title}}" /></a>
+		{% endif %}
+		{% if object.description %}
+			<div class="field_description">{{object.description|safe}}</div>
+		{% endif %}
+		{% if object.body %}
+			<div class="field_body">{{object.body|safe}}</div>
+		{% endif %}
+	</div>
+{% endblock %}
+

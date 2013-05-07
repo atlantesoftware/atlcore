@@ -1,0 +1,126 @@
+#UserSubscriber {
+	background-image: url("/files/skins/basesite/images/rightcolumn_top_bg.jpg");
+	background-repeat: repeat-x;
+	overflow: hidden;
+	border-top:2px solid white; 
+}
+
+#UserSubscriber #UserSubscriber_ajax_loading {
+	display: none;
+}
+
+#UserSubscriber #UserSubscriber_ajax_success {
+	display: none;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	background-color:white;
+	overflow: hidden;
+	opacity: 0.9;
+}
+
+#UserSubscriber_ajax_error_message {
+	margin:20px;
+	margin-top:60px;
+	color: #3d3d3d;
+}
+	
+#UserSubscriber #UserSubscriber_ajax_error {
+	display: none;
+}
+
+
+#UserSubscriber .atl_component_wrapper {
+	background-image:url('../images/background.jpg');
+	background-repeat:no-repeat;
+	width: 341px;
+	height: 158px;
+	margin-left: 15px;
+	margin-top: 15px;
+	margin-bottom: 17px;
+	position: relative; 
+}
+
+
+#UserSubscriber .atl_component_wrapper #UserSubscriber_ajax_panel {
+	position: absolute;
+	display:none;
+	top: 0;
+	left:0;
+	z-index: 10;
+	width: 100%;
+	height: 100%;
+}
+
+#UserSubscriber .atl_component_wrapper #UserSubscriber_ajax_panel button{
+	display:none;
+}
+
+#UserSubscriber .atl_component_wrapper #UserSubscriber_ajax_panel #UserSubscriber_ajax_loading {
+	width: 341px;
+	height: 100%;
+	opacity:0.9;
+	position: relative;
+	text-align: center;
+	background-color: white;
+}
+
+#UserSubscriber .atl_component_wrapper #UserSubscriber_ajax_panel img{
+	height: 158px;
+}
+
+#UserSubscriber .atl_component_wrapper h3{
+	color: #676767;
+	font-size: 16px;
+	font-family: "Times New Roman",serif;
+	text-transform: uppercase;
+	margin: 15px;
+	margin-top:0px;
+	width: 160px;
+	padding-top:15px;
+}
+
+#UserSubscriber .atl_component_wrapper label{
+	display: block; 
+	color: #676767;
+	font-family: Tahoma,sans-serif;
+	font-size: 14px;
+}
+
+#UserSubscriber .atl_component_wrapper #UserSubscriber_form{
+	margin-left: 15px;
+	margin-top:18px; 
+}
+
+#UserSubscriber .atl_component_wrapper #UserSubscriber_form #email{
+	margin-top: 5px;
+	border-radius: 9px;
+	color: #363535;
+	border:1px solid #c3c3c3; 
+	padding: 2px 2px 2px 4px;
+	background-color: white;
+	display: block;  
+}
+
+#UserSubscriber .atl_component_wrapper #UserSubscriber_form #UserSubscriber_form_submit,
+#UserSubscriber button{
+	background-image: url("/files/skins/basesite/images/button.png");
+	background-repeat: no-repeat;
+	height: 36px;
+	text-align: center; 
+	width: 183px;
+	border: none; 
+	font-size: 12px; 
+	color: #2575AD; 
+	text-transform: uppercase;
+	font-family: Tahoma,sans-serif;
+	line-height: 30px;
+	position:absolute;
+	top:138px;
+	left: 85px;
+	background-color: transparent;  
+	padding-bottom:5px;
+}
+
+#UserSubscriber .atl_component_wrapper #UserSubscriber_form #UserSubscriber_form_submit:hover{
+	color: #676767;

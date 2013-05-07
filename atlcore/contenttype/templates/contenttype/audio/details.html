@@ -1,0 +1,19 @@
+{% extends base_detail_template|default:"contenttype/base.html" %}
+{% load i18n %}
+
+{% block main-content %}
+	<div id="details">
+		{% if object.creator %}
+			<div class="field_creator">{{object.creator}}</div>
+		{% endif %}
+		{% if object.contributor %}
+			<div class="field_contributor">{{object.contributor}}</div>
+		{% endif %}
+		<div id="audio_player_id"></div>
+		{% include "contenttype/includes/audio_player.html" %}
+		{% if object.description %}
+			<div class="field_description">{{object.description|safe}}</div>
+		{% endif %}
+	</div>
+{% endblock %}
+

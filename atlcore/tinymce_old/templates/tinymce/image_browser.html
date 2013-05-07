@@ -1,0 +1,21 @@
+<div class="node-content">
+	<input type="hidden" value="{{parent_folder.pk}}"/>
+	<div class="ui-small-folder"></div>
+	<div class="folder-title"> ..</div>	
+</div> 
+
+
+{% for folder in folder_list %}   
+	<div class="node-content">
+		<input type="hidden" value="{{folder.pk}}"/>
+		<div class="ui-small-folder"></div>
+		<div class="folder-title"> {{folder.title}}</div>	
+	</div>     	
+{% endfor %}
+{% for picture in picture_list %}   
+	<span>
+		<input type="hidden" value="/files/{{picture.image}}" />
+		<img class="picture" src="{{picture.get_image_crop}}"/>	
+	</span>
+	     	
+{% endfor %}    

@@ -1,0 +1,102 @@
+/*
+	root element for the scrollable.
+	when scrolling occurs this element stays still.
+*/
+/*SCROLLABLE*/
+.scrollable {
+
+	/* required settings */
+	position:relative;
+	overflow:hidden;
+	width: 600px;
+	height:200px;
+}
+
+.scrollable .items {
+	width:20000em;
+	position:absolute;
+	clear:both; 
+}
+
+
+.items div {
+	float:left;
+	width:300px;
+}
+
+.scrollable img {
+	float:left;
+	width:300px;
+	height:200px;
+	border:none;
+}
+
+.scrollable .active {
+	position:relative;
+	cursor:default;
+}
+/*SCROLLABLE-END*/
+
+/*NAVIGATION*/
+
+.navigation-wrapper {
+	padding: 0;
+	margin: 0;	
+	width: 600px;
+	clear: both;
+}
+
+.navigation-wrapper a.carousel-left-button {
+	float: left;
+	width: 30px;
+	height: 32px;
+	background: url("ui-button-carrousel-l.png") no-repeat;
+	cursor: pointer;
+}
+
+.navigation-wrapper a.carousel-left-button:hover {
+	background: url("ui-button-carrousel-l-over.png");
+}
+
+.navigation-wrapper a.carousel-right-button {
+	width:30px;
+	height:32px;
+	float: right;
+	background:url("ui-button-carrousel-r.png") no-repeat;
+	cursor:pointer;
+}
+
+.navigation-wrapper a.carousel-right-button:hover {
+	background:url("ui-button-carrousel-r-over.png");
+}
+
+.carousel-wrapper .navigation {
+	text-align: center;
+	padding-top:10px;
+	width: auto;
+}
+.carousel-wrapper .navigation ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	padding-top: 4px;
+}
+.carousel-wrapper .navigation li.unselected {
+	display: inline;
+	background: transparent url(ui-slider-bullet.png) no-repeat 0 0;
+}
+
+.carousel-wrapper .navigation li.selected {
+	display: inline;
+	background: transparent url(ui-slider-bullet-over.png) no-repeat 0 0;
+}
+
+.carousel-wrapper .navigation a:link, .carousel-wrapper .navigation a:visited {
+	padding: 3px 5px 2px;
+	
+}
+.carousel-wrapper .navigation a:hover {
+	/* color: #FFFFFF;
+	background-color: #711515; */
+}
+/*NAVIGATION-END*/

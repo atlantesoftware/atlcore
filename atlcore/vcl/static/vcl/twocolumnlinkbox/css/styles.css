@@ -1,0 +1,47 @@
+.TwoColumnLinkBox {
+}
+
+.TwoColumnLinkBox .atl_component_wrapper {
+	position:relative;
+	font-family: Georgia,serif;
+	background-image: url("../images/background.jpg");
+	background-repeat:repeat-x;
+	overflow: hidden;
+	width: 100%;
+}
+
+.TwoColumnLinkBox .atl_component_wrapper ul {
+	list-style: None;
+	margin:20px;
+	float:left;
+	width: 45%;
+	margin-top:0px;
+}
+
+.TwoColumnLinkBox .atl_component_wrapper ul li{
+	margin-bottom:10px;
+}
+
+.TwoColumnLinkBox .atl_component_wrapper h3{
+	font-size: 14px;
+	text-transform: uppercase;
+	color:#497BD2;
+	margin: 20px;
+	border-top:0px;
+}
+
+.TwoColumnLinkBox .atl_component_wrapper h4{
+	padding-right: 1em;
+}
+
+.TwoColumnLinkBox .atl_component_wrapper h4 a{
+	color:#797979;
+	font-size: 12px;
+	float:left;
+}
+
+.TwoColumnLinkBox .atl_component_wrapper p{
+	font-family: Georgia,serif;
+	color: #797979;
+	font-size:12px;
+}

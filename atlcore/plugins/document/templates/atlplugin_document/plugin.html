@@ -1,0 +1,21 @@
+{% load sekizai_tags admin_static%}
+
+{% addtoblock "css"%}<link rel="stylesheet" type="text/css" media="all" href="{% static "atlplugin_document/css/document.css" %}" /> {% endaddtoblock %}
+<h2 class="section_header">{{instance.title}}</h2>
+<div class="atlplugin_document">
+	{% if instance.content.image %}
+		<a href="{{instance.content.cms_absolute_url}}"><img class="field_image" src="{{instance.content.image.url}}"/></a>
+	{% endif %}
+	<h3 class="field_title"><a href="{{instance.content.cms_absolute_url}}">{{instance.content.title}}</a></h3>
+    {% if instance.show_description %}
+        <div class="field_description">
+        {{instance.content.description|safe}}
+        </div>
+    {% endif %}
+    {% if instance.show_body %}
+        <div class="field_body">
+            {{instance.content.body|safe}}
+        </div>
+    {% endif %}
+
+</div>

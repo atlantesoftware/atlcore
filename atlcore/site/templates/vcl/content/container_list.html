@@ -1,0 +1,44 @@
+<div id="{{component.id}}" class="container_list">
+	<h1>{{component.data_provider.title}}</h1>
+	{% if component.data_provider.getChildren|length > 0 %}
+		<ul class="children">
+		{% for child in paginator.object_list %}
+		<li class="{% if forloop.first %}first{%endif%}{%if forloop.last%}last{%endif%}">
+			<div>
+				<a href="{{child.get_absolute_url}}">
+					<img src="{{child.get_image_thumbnail}}"/>
+				</a>
+				<h2><a href="{{child.get_absolute_url}}">{{child.title}}</a></h2>
+				{{child.description|safe|truncatewords:33}}
+			</div>
+		</li>
+		{% endfor %}
+		{% endif %}
+		</ul>
+	<div class="pagination">
+	    <div class="step-links">
+	        {% if component.data_provider.paginated_childrens.has_previous %}
+		        <div class="button_left">
+		            <a href="?page={{ component.data_provider.paginated_childrens.previous_page_number }}"><img src="/files/skins/basesite/images/paginator_left_button.jpg" alt="anterior"/></a>
+		        </div>
+	        {% else %}
+		        <div class="button_left">
+		            <img src="/files/skins/basesite/images/paginator_left_button.jpg" alt="anterior"/>
+		        </div>
+	        {% endif %}
+	        <div class="pages_list">
+	        	{% get_paginator_near_page_list component.data_provider.paginated_childrens.number component.data_provider.paginated_childrens.paginator.num_pages 7 %}
+	        </div>
+	 
+	        {% if component.data_provider.paginated_childrens.has_next %}
+		        <div class="button_right">
+		            <a href="?page={{ component.data_provider.paginated_childrens.next_page_number }}"><img src="/files/skins/basesite/images/paginator_right_button.jpg" alt="próximo"/></a>
+		        </div>
+		    {% else %}
+		    	<div class="button_right">
+		            <img src="/files/skins/basesite/images/paginator_right_button.jpg" alt="próximo"/>
+		        </div>   
+	        {% endif %}
+	    </div>
+	</div>		
+</div>

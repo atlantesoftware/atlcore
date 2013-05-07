@@ -1,0 +1,20 @@
+{% load lang %}
+
+<form action="{% url admin:setlang %}" method="post" id="language_form">{% csrf_token %}
+	<ul>
+	    {% for lang in component.LANGUAGES %}
+	    {% ifequal lang.0 component.LANGUAGE %}
+	    	<!--<li {% if forloop.last %}class="last"{% endif %}>
+	        
+				 <span><img src="{{ lang.0|lang_flag_url }}"  alt="{{ lang.1 }}" title="{{ lang.1 }}" /></span> 
+			</li>-->
+	    {% else%}
+	    	<li {% if forloop.last %}class="last"{% endif %}>
+				<a href="javascript:void(0);" onclick="change_language('{{ lang.0 }}');"><img src="/static/common/flags/languages/{{lang.0}}.jpg"  alt="{{ lang.1 }}" title="{{ lang.1 }}" /></a>
+			</li>
+		{% endifequal %}
+	    
+	    {% endfor %}
+		<input type="hidden" id="language" name="language" value="{{component.LANGUAGE}}" />
+	</ul>
+</form>

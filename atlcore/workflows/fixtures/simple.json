@@ -1,0 +1,181 @@
+[
+  {
+    "pk": 1,
+    "model": "workflows.workflow",
+    "fields": {
+      "public_state": 2,
+      "initial_state": 1,
+      "name": "Simple"
+    }
+  },
+  {
+    "pk": 1,
+    "model": "workflows.state",
+    "fields": {
+      "transitions": [
+        2
+      ],
+      "name": "Borrador",
+      "workflow": 1
+    }
+  },
+  {
+    "pk": 2,
+    "model": "workflows.state",
+    "fields": {
+      "transitions": [
+        2,
+        3
+      ],
+      "name": "P\u00fablico",
+      "workflow": 1
+    }
+  },
+  {
+    "pk": 3,
+    "model": "workflows.state",
+    "fields": {
+      "transitions": [
+        1,
+        3
+      ],
+      "name": "Por revisar",
+      "workflow": 1
+    }
+  },
+  {
+    "pk": 1,
+    "model": "workflows.transition",
+    "fields": {
+      "destination": 2,
+      "name": "Publicar",
+      "condition": "",
+      "workflow": 1
+    }
+  },
+  {
+    "pk": 2,
+    "model": "workflows.transition",
+    "fields": {
+      "destination": 3,
+      "name": "Revisar",
+      "condition": "",
+      "workflow": 1
+    }
+  },
+  {
+    "pk": 3,
+    "model": "workflows.transition",
+    "fields": {
+      "destination": 1,
+      "name": "Retirar",
+      "condition": "",
+      "workflow": 1
+    }
+  },
+  {
+    "pk": 1,
+    "model": "workflows.stateobjectrelation",
+    "fields": {
+      "state": 2,
+      "content_id": 1,
+      "content_type": 13
+    }
+  },
+  {
+    "pk": 1,
+    "model": "workflows.workflowmodelrelation",
+    "fields": {
+      "content_type": 20,
+      "workflow": 1
+    }
+  },
+  {
+    "pk": 2,
+    "model": "workflows.workflowmodelrelation",
+    "fields": {
+      "content_type": 14,
+      "workflow": 1
+    }
+  },
+  {
+    "pk": 3,
+    "model": "workflows.workflowmodelrelation",
+    "fields": {
+      "content_type": 37,
+      "workflow": 1
+    }
+  },
+  {
+    "pk": 4,
+    "model": "workflows.workflowmodelrelation",
+    "fields": {
+      "content_type": 22,
+      "workflow": 1
+    }
+  },
+  {
+    "pk": 5,
+    "model": "workflows.workflowmodelrelation",
+    "fields": {
+      "content_type": 19,
+      "workflow": 1
+    }
+  },
+  {
+    "pk": 6,
+    "model": "workflows.workflowmodelrelation",
+    "fields": {
+      "content_type": 21,
+      "workflow": 1
+    }
+  },
+  {
+    "pk": 7,
+    "model": "workflows.workflowmodelrelation",
+    "fields": {
+      "content_type": 16,
+      "workflow": 1
+    }
+  },
+  {
+    "pk": 8,
+    "model": "workflows.workflowmodelrelation",
+    "fields": {
+      "content_type": 15,
+      "workflow": 1
+    }
+  },
+  {
+    "pk": 9,
+    "model": "workflows.workflowmodelrelation",
+    "fields": {
+      "content_type": 18,
+      "workflow": 1
+    }
+  },
+  {
+    "pk": 10,
+    "model": "workflows.workflowmodelrelation",
+    "fields": {
+      "content_type": 13,
+      "workflow": 1
+    }
+  },
+  {
+    "pk": 11,
+    "model": "workflows.workflowmodelrelation",
+    "fields": {
+      "content_type": 38,
+      "workflow": 1
+    }
+  },
+  {
+    "pk": 12,
+    "model": "workflows.workflowmodelrelation",
+    "fields": {
+      "content_type": 17,
+      "workflow": 1
+    }
+  }
+]

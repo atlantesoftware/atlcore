@@ -1,0 +1,21 @@
+{% extends "admin/delete_selected_confirmation.html" %}
+{% load i18n atl_admin_tags %}
+
+{% block extrahead %}{{ block.super }}
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}
+{% endblock %}
+
+{% block breadcrumbs %}{% if not is_popup %}
+{% for obj in queryset|slice:":1" %}
+{{obj|breadcrumbs_for_model}}
+{% endfor %}
+{% endif %}{% endblock %}
+
+
+{% block content %}
+<div id="content-main">
+	{{ block.super }}
+</div>
+{% endblock %}

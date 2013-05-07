@@ -1,0 +1,22 @@
+
+{% comment %}
+<script type="text/javascript" language="JavaScript">
+	{% for library in component.librarylist %}
+		atl_includelibrary('{{library.keys|first}}', '{{library.values|first}}');
+	{% endfor %}
+	
+	{% for style in component.stylelist %}
+		atl_includestyle('{{style.keys|first}}', '{{style.values|first}}');
+	{% endfor %}
+		
+	{% if component.theme %}
+		atl_includestyle('{{component.class_name}}_theme-{{component.theme}}', '{{component.theme_url}}')
+	{% endif %}
+</script>
+{% endcomment %}
+
+{% include template %}
+
+{% if component.js_behavior %}
+<script type="text/javascript" src='{{component.js_behavior}}'> </script>
+{% endif %}

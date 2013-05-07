@@ -1,0 +1,21 @@
+{% extends templateParent|default:"site/main.html" %}
+
+{% load admin_static %}
+
+{% block styles %}
+	{{block.super}}
+	<link rel="stylesheet" type="text/css" href="{%static ""%}site/css/{{content.content_type.name}}.css" />
+	<link rel="stylesheet" type="text/css" href="{%static ""%}skins/{{skin.slug}}/css/{{content.content_type.name|lower}}.css" />
+{% endblock %}
+
+{% load i18n %}
+
+
+{% block main %}
+	{% block before_main %}
+	{% endblock %}
+		{% load vcl%}
+		{% show_component content_component template_name %}
+	{% block after_main %}
+	{% endblock %}
+{% endblock %}

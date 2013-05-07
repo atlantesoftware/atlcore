@@ -1,0 +1,10 @@
+
+<ul class="menu_horizontal">
+{% for menu in component.items %}
+    <li> 
+		<a href="{{menu.get_absolute_url}}">
+			{{ menu.title }}
+		</a> 
+	</li>
+{% endfor %}
+</ul>

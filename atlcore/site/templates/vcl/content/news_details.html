@@ -1,0 +1,6 @@
+	<div id="news_details">
+		{% include 'vcl/content/include/details.html' %}
+		{% if component.data_provider.body %}
+			<div class="field_body">{{component.data_provider.body|safe}}</div>
+		{% endif %}
+	</div>

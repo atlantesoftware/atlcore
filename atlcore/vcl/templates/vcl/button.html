@@ -1,0 +1,14 @@
+<script type="text/javascript">
+$(function(){ 
+	$("#{{component.id}}").button({{component.config|safe}}); 
+
+	{% if component.on_click %}
+	$('#{{component.id}}').click(function() { 
+			{{component.on_click}}
+		});
+	{% endif %}
+
+}); 
+</script>
+
+<button id="{{component.id}}" class="{{component.html_class}}">{{component.label}}</button>

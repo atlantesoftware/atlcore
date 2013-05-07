@@ -1,0 +1,10 @@
+
+<div id="{{component.id}}"> 
+	Loading the player ...
+</div>
+
+<script type="text/javascript">
+	$(function(){ 
+		jwplayer("{{component.id}}").setup({{component.config|safe}});
+	}); 
+</script>

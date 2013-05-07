@@ -1,0 +1,208 @@
+{% load i18n %}
+{% if addlink %}
+<li class="addlink first tool">
+
+	{% if objects_model %}
+	<div id="to_add_models" class="extra-objects-tools">
+		<ul id="contents_type">
+		    {% for key, name in objects_model %}
+			<li class="tool icon-{{name}} add_model{% if forloop.first %} first{% else %}{% if forloop.last %} last{% endif %}{% endif %}">
+				<a href="javascript:void(0);" onclick="add('{{key}}', '{% url 'admin:index' %}', '{{object.id}}')">
+					<div class="atlIcon icon-{{name}}" title="{{name}}" alt="{{name}}"><span >{{name}}</span></div>
+				</a>
+			</li>
+		    {% endfor %}
+			<li class='clear'></li>
+		</ul>
+	</div>
+	</li>
+	{% endif %}
+
+{% endif %}
+
+{% comment %}
+{% if copylink %}
+<li class="copylink tool"><a href="javascript:void(0);" onclick="go_to('{{copy_selected_url}}');" class="copylink">
+	<div class="atlIcon icon-copylink"><span >copylink</span></div>
+	</a>
+	</li>
+{% else %}
+<li class="copylink hidden tool" id="enable_copy">
+	<a href="javascript:void(0);" onclick="submit_to('{{copy_selected_url}}');" class="copylink">
+		<!--<img src="{{MEDIA_URL}}admin/images/copy-enable.gif" alt="{% trans 'Copy' %}" title="{% trans 'Copy' %}" />-->
+		<div class="atlIcon icon-copylink"><span >copylink</span></div>
+	</a>
+</li>
+<li class="copylink disable tool" id="disable_copy">
+	<!--<img src="{{MEDIA_URL}}admin/images/copy-disable.gif" alt="{% trans 'Copy' %}" title="{% trans 'Copy disable' %}" />-->
+	<div class="atlIcon icon-copylink"><span >copylink</span></div>
+</li>
+{% endif %}
+
+{% if cutlink %}
+<li class="cutlink tool">
+	<a href="javascript:void(0);" onclick="go_to('{{cut_selected_url}}');" class="cutlink">
+	<!--<img src="{{MEDIA_URL}}admin/images/cut-enable.gif" alt="{% trans 'Cut' %}" title="{% trans 'Cut' %}" />-->
+	<div class="atlIcon icon-cutlink"><span >cut</span></div>
+	</a>
+</li>
+{% else %}
+<li class="cutlink hidden tool" id="enable_cut">
+	<a href="javascript:void(0);" onclick="submit_to('{{cut_selected_url}}');" class="cutlink">
+	<!--<img src="{{MEDIA_URL}}admin/images/cut-enable.gif" alt="{% trans 'Cut' %}" title="{% trans 'Cut' %}" />-->
+	<div class="atlIcon icon-cutlink"><span >cut</span></div>
+	</a>
+	</li>
+<li class="cutlink disable tool" id="disable_cut">
+	<!--<img src="{{MEDIA_URL}}admin/images/cut-disable.gif" alt="{% trans 'Cut' %}" title="{% trans 'Cut disable' %}" />-->
+	<div class="atlIcon icon-cutlink"><span >cut</span></div>
+	
+</li>
+{% endif %}
+
+{% if pastelink %}
+<li class="pastelink tool">
+	<a href="javascript:void(0);" onclick="go_to('{{paste_selected_url}}');" class="pastelink">
+	<!--<img src="{{MEDIA_URL}}admin/images/paste-enable.gif" alt="{% trans 'Paste' %}" title="{% trans 'Paste' %}" />-->
+	<div class="atlIcon icon-pastelink"><span >paste</span></div>
+	</a>
+</li>
+{% else %}
+<li class="pastelink disable tool" id="disable_paste">
+	<!--<img src="{{MEDIA_URL}}admin/images/paste-disable.gif" alt="{% trans 'Paste' %}" title="{% trans 'Paste disable' %}" />-->
+	<div class="atlIcon icon-pastelink"><span >paste</span></div>
+</li>
+{% endif %}
+
+<li class="vertical-separator tool"></li>
+
+<li class="viewlink tool">
+	<a href="javascript:void(0);" onclick="activate('admin_views');" class="viewlink">
+		<div class="atlIcon icon-ViewLink"><span >view</span></div>
+	</a>
+<div id="admin_views" class="extra-objects-tools">
+	{% if detaillink %}
+	<li class="detaillink tool">
+		<a href="javascript:void(0);" onclick="go_to('{{object.admin_url}}')" class="detaillink">
+			<div class="atlIcon icon-detaillink"><span >detail</span></div>
+		</a>
+	</li>
+	{% else %}
+	<li class="detaillink disable tool">
+		<div class="atlIcon icon-detaillink"><span >detail</span></div>
+	</li>
+	{% endif %}
+	
+	{% if summarylink %}
+	<li class="summarylink tool">
+		<a href="javascript:void(0);" onclick="go_to('{{object.admin_url_summary}}')" class="detaillink">
+			<!--<img src="{{MEDIA_URL}}admin/images/summary-view.gif" alt="{% trans 'Summary' %}" title="{% trans 'Summary' %}" />-->
+			<div class="atlIcon icon-summarylink"><span >summary</span></div>
+		</a>
+	</li>
+	{% else %}
+	<li class="summarylink disable tool">
+		<!--<img src="{{MEDIA_URL}}admin/images/summary-view-disable.gif" alt="{% trans 'Summary' %}" title="{% trans 'Summary disable' %}" />-->
+		<div class="atlIcon icon-summarylink"><span >summary</span></div>
+	</li>
+	{% endif %}
+	
+	{% if thumbnaillink %}
+	<li class="thumbnaillink tool">
+		<a href="javascript:void(0);" onclick="go_to('{{object.admin_url_thumbnails}}')" class="detaillink">
+			<!--<img src="{{MEDIA_URL}}admin/images/thumbnail-view.gif" alt="{% trans 'Thumbnail' %}" title="{% trans 'Thumbnail' %}" />-->
+			<div class="atlIcon icon-thumbnaillink"><span >thumbnail</span></div>
+		</a>
+	</li>
+	{% else %}
+	<li class="thumbnaillink disable tool">
+		<!--<img src="{{MEDIA_URL}}admin/images/thumbnail-view-disable.gif" alt="{% trans 'Thumbnail' %}" title="{% trans 'Thumbnail disable' %}" />-->
+		<div class="atlIcon icon-thumbnaillink"><span >thumbnail</span></div>
+	</li>
+	{% endif %}
+</div>
+</li>
+
+<li class="vertical-separator tool"></li>
+
+{% if viewsitelink %}
+<li class="viewsitelink tool">
+	<a href="javascript:void(0);" onclick="go_to('{{object.get_absolute_url}}')" class="viewsitelink">
+		<div class="atlIcon icon-Viewsitelink"></div>
+	</a></li>
+{% else %}
+<li class="viewsitelink disable tool">
+	<div class="atlIcon icon-Viewsitelink"></div>
+</li>
+{% endif %}
+
+<li class="vertical-separator tool"></li>
+<li class="translationlink disable tool{% if translate %} hidden{% endif %}" id="disable_translation">
+	<img src="{{MEDIA_URL}}admin/images/translation-disable.gif" alt="{% trans 'Translate' %}" title="{% trans 'Disable translate' %}" />
+</li>
+<li class="translationlink tool{% if not translate %} hidden{% endif %}" id="enable_translation"><a href="javascript:void(0);" onclick="activate('admin_translations');" class="translationlink"><img src="{{MEDIA_URL}}admin/images/translation-enable.gif" alt="{% trans 'Translate' %}" title="{% trans 'Translate' %}" /></a>
+	<div id="admin_translations" class="extra-objects-tools">
+		<ul id="move_options">
+		{% for lang in LANGUAGES %}
+	    {% if translate %}
+	    <li class="{{lang.0}}link tool"><a href="javascript:void(0);" onclick="go_to('{% url admin:translate generic_id=object.get_generic.id language=lang.0 %}')" class="{{lang.0}}link">{{lang.1}}</a></li>
+	    {% else %}
+	    <li class="{{lang.0}}link tool"><a href="javascript:void(0);" onclick="submit_to('{% url admin:translate-list language=lang.0 %}')" class="{{lang.0}}link">{{lang.1}}</a></li>
+	    {% endif %}
+		{% endfor %}
+		</ul>
+	</div>
+</li>
+{% endcomment %}
+
+{% comment %}
+<li class="vertical-separator tool"></li>
+
+{% if historylink %}
+<li class="historylink tool"><a href="javascript:void(0);" onclick="go_to('{{object.admin_url_for_history}}')" class="historylink">{% trans 'History' %}</a></li>
+{% else %}
+<li class="historylink disable tool">{% trans 'History disable' %}</li>
+{% endif %}
+{% endcomment %}
+{% comment %}
+<li class="vertical-separator tool"></li>
+
+{% if permissionslink %}
+<li class="permissionslink tool"><a href="javascript:void(0);" onclick="go_to('{{object.admin_url_for_permissions}}')" class="permissionslink">{% trans 'Permissions' %}</a></li>
+{% else %}
+<li class="permissionslink disable tool">{% trans 'Permissions' %}</li>
+{% endif %}
+
+{% endcomment %}
+{% if use_atl_workflow %}
+<li class="workflowlink tool">
+	<span>{% trans 'Workflow state: ' %}{% trans wf_current_state.name %}</span>
+</li>
+
+
+<li class="transitionlink disable tool{% if wf_states %}  hidden{% endif %}" id="disable_transition">
+    <img src="{{MEDIA_URL}}admin/images/transition-disable.gif" alt="{% trans 'Transition' %}" title="{% trans 'Disable transition' %}" /></li>
+<li class="transitionlink tool{% if not wf_states %}  hidden{% endif %}" id="enable_transition"><a href="javascript:void(0);" onclick="activate('admin_transitions');" class="transitionlink"><img src="{{MEDIA_URL}}admin/images/transition-enable.gif" alt="{% trans 'Transition' %}" title="{% trans 'Transition' %}" /></a>
+    <div id="admin_transitions" class="extra-objects-tools">
+	    <ul id="transitions_options">
+	        {% for trans_id, trans_name in wf_states %}
+	        <li class="tool">
+	        	<a href="javascript:void(0);" onclick="go_to('{% url "admin:transition_to" generic_id=object.id transition_id=trans_id %}')">{% trans trans_name %}</a>
+			</li>
+	        {% endfor %}
+	    </ul>
+    </div>
+</li>
+
+{% endif %}
+
+{% comment %}
+{% if has_url_conf %}
+<li class="vertical-separator tool"></li>
+<li class="configurationlink tool">
+	<a href="javascript:void(0);" onclick="go_to('{% url admin:atl_content_type_folder_conf object_id=object.id %}')" class="configurationlink">
+	<span >{% trans 'Configuration' %}</span>
+	</a>
+</li>
+{% endif %}
+{% endcomment %}

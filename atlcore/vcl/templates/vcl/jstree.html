@@ -1,0 +1,11 @@
+<div id={{component.id}}></div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  jstree_config = {{component.config|safe}}
+  jstree_config.json_data = {"data": {{component.data_provider.json_open_tree|safe}}, "ajax": {"url": "{{component.data_provider.url}}", "data": function (n) {return { id : n.attr ? n.attr("id") : 0 };}}}
+  $("#{{component.id}}").jstree(jstree_config);
+//$("#{{component.id}}").jstree({"themes": {"themes": "default", "url": "/atlante_core_media/common/js/jquery.plugins/jstree/themes/apple/style.css", "theme": "apple"}, "core": {"html_titles": false, "notify_plugins": true, "open_parents": true, "rtl": false, "initially_open": [], "animation": 500, "initially_load": [], "strings": {"new_node": "New node", "loading": "Loading ..."}, "load_open": false}, "plugins": ["themes", "json_data"]});
+});
+</script>
+

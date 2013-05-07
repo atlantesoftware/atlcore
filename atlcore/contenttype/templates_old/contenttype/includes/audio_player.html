@@ -1,0 +1,10 @@
+{% load i18n %}
+<script type="text/javascript" src="{{ATL_MEDIA_URL}}common/js/swfobject.js"></script>
+<script type='text/javascript'>
+var swfObj = new SWFObject('{{ATL_MEDIA_URL}}common/swf/1pixelout.swf','audio_player','{%block audio_width%}190{%endblock%}','{%block audio_heigth%}16{%endblock%}','9');
+swfObj.addParam('allowfullscreen','true');
+swfObj.addParam('allowscriptaccess','always');
+swfObj.addParam('allowsnetworking','all');
+swfObj.addParam('flashvars','autostart=true&soundFile={%block audio_src%}{{object.audio.url}}{%endblock%}');
+swfObj.write('{%block audio_player_element%}audio_player_id{%endblock%}');
+</script>

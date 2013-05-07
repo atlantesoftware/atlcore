@@ -1,0 +1,22 @@
+{% load sekizai_tags %}
+{% addtoblock "css" %}<link rel="stylesheet" href="{{ STATIC_URL }}atlplugin_html5video/css/video-js.css" />{% endaddtoblock %}
+{% addtoblock "js" %}
+    <script type="text/javascript" src="{{ STATIC_URL }}atlplugin_html5video/js/video.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}common/jwplayer/jwplayer_v5_8/jwplayer.js"></script>
+{% endaddtoblock %}
+<div id="{{ object.id }}_player">
+    Loading the player ...
+</div>
+<script>
+$(function(){
+jwplayer("{{ object.id }}_player").setup({
+"autostart": {{ object.auto_play|lower }},
+"image": "{{ object.video.thumbnail.url }}",
+"height": {{ object.height }},
+"width": {{ object.width }},
+"controlbar": "bottom",
+"file": "{{ object.video.external_url }}",
+"skin": "{{ STATIC_URL }}common/jwplayer/jwplayer_v5_8/skins/beelden/beelden.zip",
+"flashplayer": "{{ STATIC_URL }}common/jwplayer/jwplayer_v5_8/player.swf"});
+});
+</script>

@@ -1,0 +1,33 @@
+#gallery-content { padding: 20px;}
+
+.node-content {
+    cursor: pointer;
+    display: inline-block;
+    padding-bottom: 20px;
+    text-align: left;
+    width: 150px;
+    height: 77px;
+}
+.node-content .ui-small-folder {
+	background-image: url("../img/small_folder_icon.png");
+	width: 50px;
+	height: 38px;
+}
+
+.node-content .ui-small-content {
+	background-color:blue;
+	width: 50px;
+	height: 38px;
+}
+
+.node-content .folder-title {
+	font-size: 12px;
+	float: left;
+}
+
+img.picture {cursor: pointer; margin: 5px; }
+
+.mceActionPanel {
+    clear: both;
+}
+    

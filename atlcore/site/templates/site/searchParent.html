@@ -1,0 +1,105 @@
+{% extends templateParent|default:"site/main.html" %}
+
+{% block styles %}
+	{{block.super}}
+	<link rel="stylesheet" type="text/css" href="{{ATL_MEDIA_URL}}vcl/css/search.css" />
+	<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}skins/{{skin.slug}}/css/container.css" />
+{% endblock %}
+
+{% load i18n %}
+
+
+{% block main %}
+	{% block before_main %}
+	{% endblock %}
+	
+	{% load vcl %}
+	
+	{% load siteutils %}
+	
+	<div id="content">
+		<div id="search" class="container_list">
+			
+			
+			<h1>{{component.title}}</h1>
+			{% if component.page.object_list|length > 0 %}
+			
+			<p class="results">
+				Se han encontrado {{component.page.paginator.count}} resultado(s)
+			</p>
+			
+				<ul class="children">
+				{% for item in component.page.object_list %}
+				<li class="{% if forloop.first %}first{%endif%}{%if forloop.last%}last{%endif%}">
+					<div>
+						
+							<a href="{{item.object.get_absolute_url}}">
+								<img src="{% get_image_crop_url item.object 160 105 %}"/>
+							</a>
+						
+						<h2><a href="{{item.object.get_absolute_url}}">{{item.object.title}}</a></h2>
+						
+						{% if item.object.get_instance.body %}
+							<p>{{item.object.body|safe|striptags|truncatewords:"25"}}</p>
+						{% else %}
+							<p>{{item.object.description|safe|striptags|truncatewords:"25"}}</p>
+						{% endif %}
+				
+						<div class="clearfix"></div>
+				
+					</div>
+				</li>
+				{% endfor %}
+			{% else %}
+			
+			<p class="results">
+				No se encontraron resultados para la búsqueda que realizó
+			</p>
+				{% endif %}
+				</ul>
+				
+		{% if component.page.object_list|length > 0 %}
+			<div class="pagination">
+			    <div class="step-links">
+			        {% if component.page.has_previous %}
+				        <div class="button_left">
+				            <a href="?page={{ component.page.previous_page_number }}"><img src="{{ATL_MEDIA_URL}}vcl/images/paginator_left_button.jpg" alt="anterior"/></a>
+				        </div>
+			        {% else %}
+				        <div class="button_left">
+				            <img src="{{ATL_MEDIA_URL}}vcl/images/paginator_left_button.jpg" alt="anterior"/>
+				        </div>
+			        {% endif %}
+			        
+			        
+			        {% if component %}
+			        <div class="pages_list">
+			        	{% get_paginator_near_page_list component.page.number component.page.paginator.num_pages 7 %}
+			        </div>
+			 		{% endif %}
+			 		
+			 		
+			        {% if component.page.has_next %}
+				        <div class="button_right">
+				            <a href="?page={{ component.data_provider.paginated_childrens.next_page_number }}"><img src="{{ATL_MEDIA_URL}}vcl/images/paginator_right_button.jpg" alt="próximo"/></a>
+				        </div>
+				    {% else %}
+				    	<div class="button_right">
+				            <img src="{{ATL_MEDIA_URL}}vcl/images/paginator_right_button.jpg" alt="próximo"/>
+				        </div>   
+			        {% endif %}
+			    </div>
+			</div>
+		{% endif %}
+		
+		<h2 class="errors">
+			{{errors}}
+		</h2>
+			
+		</div>
+
+	</div>
+		
+	{% block after_main %}
+	{% endblock %}
+{% endblock %}

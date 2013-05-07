@@ -1,0 +1,58 @@
+{% extends "admin/change_form.html" %}
+{% load i18n %}
+
+{% block extrahead %}{{ block.super }}
+<script type='text/javascript'>
+    jQuery(document).ready(function(){
+        parent_widget = jQuery('#id_parent').children("[value={{container_id}}]");
+        parent_widget_container = jQuery('.form-row.parent');
+        parent_widget.attr('selected', 'selected');
+        parent_widget_container.hide();
+		
+		site_widget = jQuery('#id_sites');
+		site_widget_container = jQuery('.form-row.sites')
+		if (site_widget.children().length == 1) {
+			jQuery(site_widget.children()[0]).attr('selected', 'selected');
+			site_widget_container.hide();
+		}
+		
+		//language_widget = jQuery('#id_language');
+		//language_widget_container = jQuery('.form-row.language')
+		var language = '{{LANGUAGE}}';
+		var languageSelection = $("#id_language");
+		
+		$("select#id_language option").each(function () {
+	        if ( $(this).attr("value") ==  language){
+	        	$(this).attr('selected', 'selected');
+	        } else {
+	        	$(this).removeAttr("selected")
+	        }
+	      });
+	    
+	    /* Parte del owner */
+		owner_widget = jQuery('#id_owner');
+        owner_widget_container = jQuery('.form-row.owner');
+        if ($(owner_widget).val() == ""){
+        	$(owner_widget).val('{{user.id}}');
+        }
+        owner_widget_container.hide();
+
+		/*Para evitar que se le de dos veces al submit de los formularios al guardar*/        
+        $("div#main-content form").submit(function() {
+	    	$("div.submit-row input").attr("disabled", "disabled");
+	    });
+
+		
+    });            
+</script>
+{% endblock %}
+
+{% if folder %}
+{% block breadcrumbs %}{% endblock %}
+{% endif %}
+
+{% block content %}
+<input id="session_folder_id" type="hidden" value="{{container_id}}" /> 
+{{ block.super }}
+{% endblock %}
+

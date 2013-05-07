@@ -1,0 +1,18 @@
+{% extends "site/main.html" %}
+{% load i18n %}
+
+{% block styles %}
+    {{block.super}}
+	<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}skins/{{skin.slug}}/css/aspect.css" />
+{% endblock %}
+
+{% block main %}
+<ul>
+    {% for content in contents %}
+	<li>
+		<h2><a href="{{content.get_absolute_url}}">{{content.title}}</a></h2>
+			{{content.description|safe}}
+	</li>
+	{% endfor %}	
+</ul>
+{% endblock %}

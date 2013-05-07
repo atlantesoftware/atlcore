@@ -1,0 +1,49 @@
+{% extends 'admin/base_site.html' %}
+{% load i18n object_tools vcl admin_static%}
+
+{% block extrahead %}{{ block.super }}
+<script type="text/javascript" src="{% static "common/js/jquery.plugins/jstree/jquery.jstree.js" %}" ></script>
+<script type='text/javascript' src="{% static "atlcms/js/object_actions.js" %}" ></script>
+<script type='text/javascript' src="{% static "atlcms/js/objects_checked.js" %}" ></script>
+{% endblock %}
+
+{% block coltype %}{% endblock %}
+
+{% block bodyclass %}{% endblock %}
+
+{% block breadcrumbs %}{% if not is_popup %}
+{% trans "Home" %}
+{% endif %}{% endblock %}
+
+{% block content %}
+<div id="content-main">
+	{% block object-tools %}
+	  	{% show_component edit_toolbar %}
+	  	{% show_component clipboard_toolbar %} 	  	
+		<div id="to_add_models">  
+			{% if add_toolbar %}
+		    {% show_component add_toolbar %}
+		    {% endif %}
+		</div>
+	{% endblock %}
+	<!-- Listado de contenedores raices --> 
+	{% if roots_list %}
+	{% for object_list, model_name in roots_list %}
+	<div class="container" id="model_{{model_name}}">
+		{% comment %}
+		<!--
+		{% include 'admin/cms/includes/object_list.html' %}
+		-->
+		{% endcomment %}
+		{% load vcl %}
+		<form action="" method="post" id="objects_list">{% csrf_token %}		
+		{% show_component grid %}
+		</form>  
+	</div>
+	{% endfor %}
+	{% endif %}
+</div>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}

@@ -1,0 +1,47 @@
+{% load i18n adminmedia permissions %}
+<form action="" method="post" id="objects_list">{% csrf_token %}
+	<table class="objects">
+	<thead>
+		<tr class="border-bottom">
+			{% if change_perm %}
+		    <th class="first obj_order"></th>
+			{% endif %}
+		    <th class="obj_checked"></th>
+		    <th class="obj_icon"></th>
+		    <th class="obj_title">{% trans 'objects' %}</th>
+		    <th class="obj_author">{% trans 'owner' %}</th>
+			{% if use_atl_workflow %}
+			<th class="obj_wfstate">{% trans 'state' %}</th>
+			{% endif %}
+		    <th class="obj_state">{% trans 'published' %}</th>
+		    <th class="last obj_update_date">{% trans 'update date' %}</th>
+		</tr>
+	</thead>
+	<tbody>
+	{% for obj in object_list %}
+	{% with obj.get_instance as obj %}
+	<tr class="{% cycle 'row2' 'row1' %}">
+		{% if change_perm %}
+	    {#<td class="first obj_order"><a class="move_up" href="{% url admin:move-content direction='up' generic_id=obj.id %}" title="{% trans 'up' %}"></a><a class="move_down" href="{% url admin:move-content direction='down' generic_id=obj.id %}" title="{% trans 'down' %}"></a></td>#}
+		{% endif %}
+	    <td class="obj_checked">
+	    	<input type="checkbox" name="s_objects" value="{{obj.get_meta.app_label}}__{{obj.get_meta.module_name}}__{{obj.id}}" onclick="change_all()" />
+			<input type="hidden" value="{{obj|can_add:user}}" name="add_permission" class="add_permission" id="add_permission_{{obj.id}}" />
+			<input type="hidden" value="{{obj|can_read:user}}" name="read_permission" class="read_permission" id="read_permission_{{obj.id}}" />
+			<input type="hidden" value="{{obj|can_change:user}}" name="change_permission" class="change_permission" id="change_permission_{{obj.id}}" />
+			<input type="hidden" value="{{obj|can_delete:user}}" name="delete_permission" class="delete_permission" id="delete_permission_{{obj.id}}" />
+		</td>
+	    <td class="obj_icon"><a href="{{obj.admin_url}}"><img src="{{ATL_MEDIA_URL}}admin/images/icons/{{obj.get_meta.module_name}}.gif" alt="{{obj.get_meta.module_name}}" title="{{obj.get_meta.object_name}}" /></a></td>
+	    <td class="obj_title"><a href="{{obj.admin_url}}">{{obj.title}}{#{% if not obj|is_container %} ({{obj.visit_count}}){% endif %}#}</a></td>
+	    <td class="obj_author">{#{{obj.owner}}#}todo...</td>
+		{% if use_atl_workflow %}
+		<td class="obj_wfstate">{#{{obj|get_state}}#}todo...</td>
+		{% endif %}		
+	    <td class="obj_state">{#<img alt="True" src="{% admin_media_prefix %}img/admin/icon-{% if obj.published %}yes{% else %}no{% endif %}.gif">#}todo...</td>
+	    <td class="last obj_update_date">{#{{obj.update_date|date:"SHORT_DATE_FORMAT"}} {{obj.update_date|time:"TIME_FORMAT"}}#}todo...</td>
+	</tr>
+	{% endwith %}
+	{% endfor %}
+	</tbody>
+	</table>
+</form>  

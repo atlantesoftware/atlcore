@@ -1,0 +1,13 @@
+{% load sekizai_tags admin_static%}
+
+{% addtoblock "css"%}<link rel="stylesheet" type="text/css" media="all" href="{% static "news_box/css/news_box.css" %}" /> {% endaddtoblock %}
+<h2 class="section_header">{{instance.title}}</h2>
+<div class="news_box">
+	{% if instance.news.image %}
+		<a href="{{instance.news.cms_absolute_url}}"><img class="field_image" src="{{instance.news.image.url}}"/></a>
+	{% endif %}
+	<h3 class="field_title"><a href="{{instance.news.cms_absolute_url}}">{{instance.news.title}}</a></h3>
+    <div class="field_description">
+	{{instance.news.description|safe}}
+    </div>
+</div>

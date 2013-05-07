@@ -1,0 +1,100 @@
+{% extends "admin/base_site.html" %}
+{% load i18n object_tools breadcrumbs vcl admin_static %}
+
+{% block styles %}
+	{{ block.super }}
+	<link rel="stylesheet" type="text/css" href="{% static "common/styles/paginator.css" %}" />	
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}media/css/changelists.css" />
+	<link rel="stylesheet" type="text/css" href="{% static "atlcms/styles/details.css" %}"  />
+	<link rel="stylesheet" type="text/css" href="{% static "atlcms/styles/icons.css" %}"  />
+	{{ media.css }}
+{% endblock %}
+
+
+{% block extrahead %}{{ block.super }}
+<script type='text/javascript' src="{% static "atlcms/js/object_actions.js" %}"></script>
+{% if is_container %}
+<script type='text/javascript' src="{% static "atlcms/js/objects_checked.js" %}"></script>
+{% endif %}
+{% endblock %}
+
+{% block bodyclass %}change-list{% endblock %}
+
+{% block breadcrumbs %}{% if not is_popup %}
+{{object|breadcrumbs}}
+{% endif %}{% endblock %}
+
+{% block coltype %}flex{% endblock %}
+
+{% block content %}
+<div id="content-main">
+	{% block object-tools %}
+	  	{% show_component edit_toolbar %}
+	  	{% show_component clipboard_toolbar %}	 
+	  	{% show_component workflow_toolbar %} 
+	  	{% show_component permissions_toolbar %} 
+	  	{% if settings_toolbar %}
+	  		 	
+	  		{% show_component settings_toolbar %}
+	  	{% endif %}  
+		<div id="to_add_models">  
+			{% if add_toolbar %}
+		    	{% show_component add_toolbar %}
+		    {% endif %}
+		</div>
+		<div id="admin_transitions">
+			{% show_component transition_toolbar %}
+		</div>
+	{% endblock %}
+  	  {% block main-content %}{% endblock %}
+	  <div class="clear"></div>  
+	  {% if is_container %}
+	    {% if object_list %}
+	  <div class="contents" id="contents">
+	  	{% comment %}
+	  	<!--
+	  	{% show_paginator %}
+	    {% include 'admin/includes/object_list.html' %}
+		{% show_paginator %}
+		
+		{% include 'admin/cms/includes/object_list.html' %}
+		-->
+		{% endcomment %}
+		
+		{% load vcl %}	
+		<form action="" method="post" id="objects_list">{% csrf_token %}	
+		{% show_component grid %}
+		</form>  		
+	  </div>
+	    {% endif %}
+	  {% else %}
+	      {% if comments %}
+		  <ul>
+		    	{% for comment in comments reversed %}
+				{% if not comment.is_removed %}
+		    	<li class="comment_item{% if forloop.first %} first{% endif %}{% if forloop.last %} last{% endif %}">	            
+					<div>
+					    <span class="user_name">{{comment.name}}</span>
+						<span class="submit_date">{{comment.submit_date}}</span>
+						<span class="comment_state">
+		                    {% if comment.is_public %}
+		                    <a href='{% url 'admin:change-comment' comment_id=comment.id opt="unpublish" %}'><img src='{{ STATIC_URL }}admin/img/admin/icon-yes.gif' alt="{% trans 'Unpublish' %}" title="{% trans 'Unpublish' %}" /></a>
+		                    {% else %}
+		                    <a href='{% url 'admin:change-comment' comment_id=comment.id opt="publish" %}'><img src='{{ STATIC_URL }}admin/img/admin/icon-no.gif' alt="{% trans 'Publish' %}" title="{% trans 'Publish' %}" /></a>
+		                    {% endif %}
+						</span>
+						<span class="remove_option">
+							<a href='{% url 'admin:change-comment' comment_id=comment.id opt="remove" %}'><img src='{{ STATIC_URL }}admin/img/admin/icon_deletelink.gif' alt="{% trans 'Remove' %}" title="{% trans 'Remove' %}" /></a>
+						</span>
+					</div>
+	                <div>
+	                    {{comment.comment}}
+	                </div>  											        
+		        </li>
+				{% endif %}
+				{% endfor %}
+		  </ul>
+		 {% endif %}
+	  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,130 @@
+<h2 class="heading_section">
+	<span>Galería</span>
+	<div class="pager">
+		<ul class="menu_horizontal">
+			<li class="left">
+				<a class="nav_prev" href="">
+				</a>
+			</li>
+			
+			<li class="right">
+				<a class="nav_next" href="">
+				</a>
+			</li>
+		<!-- Fin de ahora viene el paginado -->
+		</ul>
+	</div>
+</h2>
+			
+
+<div id = "{{component.id}}" class="gallery">
+{% load siteutils %}
+	{% for node in component.data_provider %}
+	<div class="item_gallery {% if forloop.counter|divisibleby:2 %}right{% endif %}">
+		<img src="{% get_image_crop_url node 156 95  %}" />
+	</div>
+	{% endfor %}
+</div>
+
+<div style="display:none;" id="gallery_pages_navigation" class="pages_navigation">
+	<span class="current_page">1</span>
+	<span class="total_pages"></span>
+</div>
+		
+		
+<script type="text/javascript">
+
+function addLoadingImage(parent_selector) {
+	var height = $(parent_selector).height();
+	var top = height/2 - 16;
+	if (top< 0){
+		top = 80;
+	}
+ 	var html = "<img style='position:relative;margin:0 auto;top:" + top +"px' class='image_loading' src='{{ATL_MEDIA_URL}}vcl/images/ajax-loader.gif' />"
+	$(parent_selector).append(html);
+}
+
+
+function removeLoadingImage(parent_selector) {
+	$(parent_selector + " img.image_loading").remove();
+}
+
+function obtainPageImagesGallery(indexPage){
+
+	$("div#{{component.id}} *").remove();
+	
+	addLoadingImage("#{{component.id}}");
+	
+	jQuery.ajax({
+		type: "GET",
+		url: "/getgallerylist/",
+		data: {id_gallery: "{{component.id}}", pagesize : "{{component.cant}}", pagenum : indexPage, width : "{{component.width}}", height : "{{component.height}}" {% if component.exclude %}, exclude :"{{component.exclude}}" {% endif %}},
+		contentType: "application/json; charset=utf-8",
+		dataType: "html",
+		success: function(html) {
+			
+			$("div#{{component.id}} ").append(html);
+			
+			removeLoadingImage("#{{component.id}}");
+
+			$("div#gallery_pages_navigation span.current_page").html(indexPage);
+			$("div#gallery_pages_navigation span.total_pages").html($("div#image_related a.total_videos").html());
+			
+			var currentNumber = parseInt($("div#{{component.id}} a.total_videos").html());
+			
+			if (currentNumber == 1 ){
+				$("div#gallery_pages_navigation").hide();
+				$("div#images_nav").hide();
+			}
+			
+			if (!$("div#{{component.id}} a.previous").length){
+				$("div.pager .nav_prev").addClass("disabled");
+			} else {
+				$("div.pager .nav_prev").removeClass("disabled");
+			}
+			
+			if (!$("div#{{component.id}} a.next").length){
+				$("div.pager .nav_next").addClass("disabled");
+			} else {
+				$("div.pager .nav_next").removeClass("disabled");
+			}
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			//displayError();
+			//alert("Ha ocurrido un error." + textStatus + errorThrown);
+		}
+	});
+};
+
+
+$(document).ready(function(){
+	
+	obtainPageImagesGallery(1);
+	
+	/*** Pagina de las dos fotos de la galería ***/
+	
+	$("div.pager  a.nav_prev").click(function(event){
+		event.preventDefault();
+		if ($("div#{{component.id}} a.previous").length) {
+			var currentNumber = parseInt($("div#{{component.id}} a.previous").attr("href"));
+			obtainPageImagesGallery(currentNumber);
+		}
+	});
+	
+		
+	$("div.pager  a.nav_next").click(function(event){
+		event.preventDefault();
+		if ($("div#{{component.id}} a.next").length) {
+			var currentNumber = parseInt($("div#{{component.id}} a.next").attr("href"));
+			obtainPageImagesGallery(currentNumber);
+		}
+	});
+	
+	
+	
+});
+</script>
+
+
+
+

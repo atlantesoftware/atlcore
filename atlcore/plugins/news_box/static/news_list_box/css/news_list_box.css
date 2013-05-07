@@ -1,0 +1,35 @@
+
+.news_list_box ul {
+	list-style: none;
+}
+
+.news_list_box ul li {
+	color: #B5B5B5;
+	margin-bottom: 20px;
+	margin-left: 0px;
+}
+
+.news_list_box ul li h3.field_title {
+	color: #B5B5B5;
+	margin-bottom: 20px;
+	margin-left: 0px;
+	font-size: 15px;
+	font-weight: normal;
+}
+
+.content_wrapper .news_list_box ul li h3.field_title {
+	font-size: 22px;
+	color: #26ABE9;
+	font-weight: normal;
+    line-height: 1.2em;
+}
+
+.news_list_box p {
+	color: #b5b5b5;
+	font-size: 15px;
+	font-weight: normal;
+}
+
+.news_list_box .field_image {
+	max-width: 100%;
+}

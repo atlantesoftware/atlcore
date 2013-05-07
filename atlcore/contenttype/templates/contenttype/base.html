@@ -1,0 +1,28 @@
+{% extends "site/base.html" %}
+{% load i18n %}
+
+
+{% block content %}
+  <div id="content-main">
+  	{% block main-content %}{% endblock %}
+  </div>
+  <div class="clear"></div>  
+  {% if is_container %}
+    {% if object_list %}
+  <div class="contents" id="contents">
+  	{% comment %}
+  	<!--
+  	{% show_paginator %}
+    {% include 'admin/includes/object_list.html' %}
+	
+	{% include 'admin/cms/includes/object_list.html' %}
+	-->
+	{% endcomment %}
+	{% if is_container %}			
+		{% load vcl %}
+		{% show_component grid %}	
+	{% endblock %}		
+  </div>
+    {% endif %}
+  {% endif %}
+{% endblock %}

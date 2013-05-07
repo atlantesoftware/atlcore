@@ -1,0 +1,47 @@
+{% extends "basesite/template_without_column.html" %}
+{% load i18n admin_static cms_tags sekizai_tags siteutils %}
+
+{% block content_instance %}
+    {% addtoblock "css" %}<link rel="stylesheet" type="text/css" media="all" href="{% static "skins/basesite/css/gallery.css" %}" /> {% endaddtoblock %}
+    {% addtoblock "js" %}<script type="text/javascript" src="{{ STATIC_URL }}admin/js/jquery.min.js"></script>{% endaddtoblock %}
+    {% addtoblock "js" %}<script type="text/javascript" src="{{ STATIC_URL }}atlgallery/galleria/galleria-1.2.9.min.js"></script>{% endaddtoblock %}
+    {% addtoblock "js" %}<script type="text/javascript" src="{{ STATIC_URL }}atlgallery/galleria/themes/waldomendoza/galleria.classic.min.js"></script>{% endaddtoblock %}
+    <div class="image_list_content">
+        <div class="section_header">Galería</div>
+        <div id="galleria" class="item_list">
+        </div>
+        <style>
+            #galleria{ width: 900px; height: 500px;}
+        </style>
+
+        <script>
+            $(document).ready(function() {
+
+                        var data = [
+                            {% for item in gallery.childrens %}
+                                {% if item.instance_class_name == 'picture' %}
+                                    {% if item.image %}
+                                        {image: "{{ item.image.url }}",
+                                            title: "{{ item.title }}",
+                                            {% if item.description %}
+                                                layer:"<div>{{ item.description|safe }}</div>"
+                                            {% endif %}
+                                        }
+                                        {% if not forloop.last %},{% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        ];
+
+                        $('#galleria').galleria({
+                            imageCrop: false,
+                            dataSource: data,
+                            transition: 'fadeslide'
+                        });
+
+            }
+            )
+
+        </script>
+    </div>
+{% endblock %}

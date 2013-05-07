@@ -1,0 +1,13 @@
+#details{
+	
+}
+
+#details .field_image,
+#details #video_player{
+    float:left;
+    padding: 0 10px 10px 0;
+}
+
+#details .field_image{
+    max-width:100%;
+}

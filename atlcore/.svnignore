@@ -1,0 +1,5 @@
+#run the following command to ignore the listed files and folder in svn
+#svn propset svn:ignore . -F .svnignore
+.settings
+.project
+.pydevproject

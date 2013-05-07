@@ -1,0 +1,11 @@
+<div id="{{component.id}}" class="{{component.html_class}}">
+	{% for item in component.data_provider %}
+		<img src="{{item.get_instance.image_absolute_url}}"/>
+	{% endfor %}
+		
+</div>
+
+<script>
+	Galleria.loadTheme('{{component.theme_script_url}}');
+   	Galleria.run('#{{component.id}}');
+</script>

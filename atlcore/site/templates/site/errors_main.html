@@ -1,0 +1,27 @@
+{% extends templateParent|default:"site/base.html" %}
+{% load i18n %}
+
+{% block styles %}
+{{block.super}}
+<link type="text/css" href="{{ATLANTE_CMS_MEDIA_URL}}site/styles/error.css" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+<div id="container">
+	<div id="header">
+		{% block head %}
+		<div id="logo">
+			<a href="/"><img title="AtlanteCMS Site" atl="AtlanteCMS Site" src="/atlante_cms_media/admin/images/logo.png"/></a>
+		</div>
+		{% endblock%}
+	</div> 
+	<div id="center_area">
+	{% block full %}{% endblock%}
+	</div>
+	<div id="footer">
+		{% block footer %}
+		<a class="atl_site" href="http://www.atlantesoftware.com">AtlanteSoftware 2010</a>
+		{% endblock%}
+	</div>
+</div>
+{% endblock %}

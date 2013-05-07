@@ -1,0 +1,56 @@
+{% load i18n scheduletags %}
+<fieldset class="module aligned" id="occurrence">
+  <div class='form-row'>
+    <label for="interval">{% trans 'Repeat every' %}</label>
+    <select id="interval">
+    {% get_range 30 as range %}
+    {% for i in range %}
+      <option value="{{i|add:1}}">{{i|add:1}}</option>
+    {% endfor %}
+    </select><span id="interval_name"></span>
+  </div>
+  
+  <div class='form-row re_weekly' style="display:none;">
+    <label class="inline">{% trans 'Days' %}</label>    
+    <input id="day0" type="checkbox" name="weekday" value='0' />
+    <label class="inline" for="day0">{% trans 'Monday' %}</label>
+    <input id="day1" type="checkbox" name="weekday" value='1' />
+    <label class="inline" for="day1">{% trans 'Tuesday' %}</label>
+    <input id="day2" type="checkbox" name="weekday" value='2' />
+    <label class="inline" for="day2">{% trans 'Wednesday' %}</label>
+    <input id="day3" type="checkbox" name="weekday" value='3' />
+    <label class="inline" for="day3">{% trans 'Thursday' %}</label>
+    <input id="day4" type="checkbox" name="weekday" value='4' />
+    <label class="inline" for="day4">{% trans 'Friday' %}</label>
+    <input id="day5" type="checkbox" name="weekday" value='5' />
+    <label class="inline" for="day5">{% trans 'Saturday' %}</label>
+    <input id="day6" type="checkbox" name="weekday" value='6' />
+    <label class="inline" for="day6">{% trans 'Sunday' %}</label>
+    <input id="byweekday" type="hidden" />                        
+  </div>
+  <div class='form-row re_monthly' style="display:none;">
+    <label class="inline">{% trans 'Repeat every' %}</label>    
+    <input id="mday0" type="radio" name="monthday" value="bymonthday" />
+    <label class="inline" for="mday0">{% trans 'Month day' %}</label>
+    <input id="mday1" type="radio" name="monthday" value="byweekday" />
+    <label class="inline" for="mday1" value="byweekday">{% trans 'Week day' %}</label>
+    <input id="bymonthday" type="hidden" />
+  </div>  
+  <div class='form-row' style="display:none">
+    <label for="start_on_value">{% trans 'Starts on' %}</label>
+    <input id="start_on_value" class="vDateField" type="text" readonly="readonly" />
+  </div>
+
+  
+  <div class='form-row'>
+    <label>{% trans 'Ends on' %}</label>
+    <input id="mirror_never" checked="checked" name="endson" type="radio" />
+    <label class='inline' for="mirror_never">{% trans 'Never' %}</label>
+    <input id="mirror_until" name="endson" type="radio" />
+    <label class='inline' for="mirror_until">{% trans 'Until' %}</label>
+    <span id="mirror_until_value_wrapper">
+      <input id="id_end_recurring_period" type="text"  class="vDateField" name="end_recurring_period_0" />
+      <input id="mirror_until_value" type="hidden" />
+    </span>
+  </div>
+</fieldset>

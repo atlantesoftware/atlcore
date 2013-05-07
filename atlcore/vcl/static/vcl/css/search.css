@@ -1,0 +1,106 @@
+#content .container_list {
+	margin-left:8px;
+	margin-right:8px;
+	position:relative;
+}
+
+#content .container_list h1 {
+	font-family: Georgia, serif;
+	font-size: 24px;
+	line-height:1.4em;
+	color: #c9c9c9;
+	border-bottom: 2px solid #d5d5d5;
+	padding-left:20px;
+	padding-right:20px;
+	margin-bottom:0px;
+}
+
+
+#content .container_list ul {
+	list-style: none;
+	margin-left:10px;
+	background-image: url("../images/newslist_bottom_bg.jpg");
+	background-position:bottom;
+	background-repeat:repeat-x;
+	padding-bottom:13px;
+}
+
+#content .container_list ul li{
+	margin-bottom: 18px;
+	border-bottom:2px solid #F1F1F1;
+	padding-bottom:5px;
+}
+
+#content .container_list ul li.last{
+	border-bottom: 0;
+}
+
+#content .container_list ul li div img{
+	float:left;
+	margin-right: 18px;
+	margin-bottom: 18px;
+	margin-top:6px;
+}
+
+#content .container_list ul li div h2{
+	font-family:"Times New Roman", Times, serif;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 1.4em;
+}
+
+#content .container_list .pagination {
+	text-align: center;
+	margin-top:-29px;
+	margin-left:20px;
+}
+
+#content .container_list .pagination .step-links {
+	margin: 0 auto;
+	width: 300px;
+}
+
+#content .container_list .pagination .pages_list{
+	background-image: url("../images/paginator_numbers_bg.jpg");
+	background-repeat: no-repeat;
+	width: 183px;
+	height: 36px;
+	line-height: 31px;
+}
+
+#content .container_list .pagination .step-links .button_left,
+#content .container_list .pagination .step-links .button_right,  
+#content .container_list .pagination .step-links .pages_list {
+	float:left;
+}
+
+#content .container_list .pagination .step-links .pages_list a{
+	font-family: Tahoma, sans-serif;
+	font-size: 12px;
+	color: #4c4c4c;
+	border-right:1px solid #c9c9c9;
+	padding-right:0.3em;
+}
+
+
+#content .container_list .pagination .step-links .pages_list a.selected{
+	color: #2575ad;
+	
+}
+
+#content .container_list .pagination .step-links .pages_list a.last{
+	border:0px;
+	padding-right:0;
+}
+
+h2.errors {
+	color:red;
+}
+
+
+#search p.results {
+	font-size: 12px;
+	color: #4c4c4c;
+	padding:10px;
+}
+

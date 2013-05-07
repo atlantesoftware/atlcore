@@ -1,0 +1,46 @@
+{% load vcl %}
+
+<link rel="stylesheet" type="text/css" media="screen" href="{{component.theme}}" />
+
+<div id="{{component.id}}" class="carousel-wrapper">
+    <!-- root element for scrollable -->
+    <div class="scrollable">
+        <!-- root element for the items -->
+        <div class="items">
+			{% for item in component.nodes %}	        	
+            	{% show_component item%}
+			{% endfor %}
+        </div>
+    </div>
+    <div class="navigation-wrapper">
+	    <a class="carousel-left-button prev"></a>
+	    <a class="carousel-right-button next"></a>
+	    <div id="navigation" class="navi navigation">
+	        <ul>
+	        	{% for item in component.nodes %}
+	            	<li class="unselected" ><a href="#">&nbsp;</a></li>
+	            {% endfor %}
+	        </ul>
+	    </div>	    
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+jQuery(document).ready(function() {
+	jQuery("#{{component.id}} .scrollable").scrollable({
+        circular: true,
+        vertical: false,
+        mousewheel: false
+    }).navigator({
+        navi: "#{{component.id}} .navigation",
+        naviItem: 'li',
+        activeClass: 'selected'
+    }).autoscroll({
+        autoplay: false,
+        interval: 3000
+    });
+});
+
+</script>

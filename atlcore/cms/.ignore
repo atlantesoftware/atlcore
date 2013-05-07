@@ -1,0 +1,6 @@
+.settings*
+.project*
+.pydev*
+.ignore
+deploy_conf.py
+logs*

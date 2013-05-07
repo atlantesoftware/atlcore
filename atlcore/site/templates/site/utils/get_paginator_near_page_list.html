@@ -1,0 +1,3 @@
+{% for num in page_nums %}
+<a href="?page={{num}}{% if search != 'None' %}&q={{search}}{% endif %}" class="{% if num == current_page %}selected{% endif %} {% if forloop.last %}last{% endif %}">{{num}}</a>
+{% endfor%}

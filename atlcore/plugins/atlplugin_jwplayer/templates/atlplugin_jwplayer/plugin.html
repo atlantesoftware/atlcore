@@ -1,0 +1,21 @@
+{% load i18n admin_static %}
+{% load cms_tags menu_tags sekizai_tags %}
+
+{% addtoblock 'js' %}<script id="lib_jwplayer_v5_8" src="{{ STATIC_URL }}common/jwplayer/jwplayer_v5_8/jwplayer.js" type="text/javascript"></script>{% endaddtoblock %}
+<h2 class="section_header">{{instance.title}}</h2>
+<div id="{{instance.id}}">
+    Loading the player ...
+</div>
+<h3 class="field_title"><a href="{{instance.video.cms_absolute_url}}">{{instance.video.title}}</a></h3>
+
+<script type="text/javascript">
+    $(function(){
+        jwplayer("{{ instance.id }}").setup({"autostart": false,
+            "image": "{{instance.video.thumbnail.url}}",
+            {% if instance.width %} "width": {{ instance.width }}, {% endif %}
+            {% if instance.height %} "height": {{ instance.height }}, {% endif %}
+            "controlbar": "bottom",
+            "file": "{{ instance.video.external_url }}",
+            "skin": " {{ STATIC_URL }}common/jwplayer/jwplayer_v5_8/skins/beelden/beelden.zip", "flashplayer": "{{ STATIC_URL }}common/jwplayer/jwplayer_v5_8/player.swf"});
+    });
+</script>

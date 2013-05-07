@@ -1,0 +1,29 @@
+
+form  label{
+  font-size:12px;
+  text-transform:none;
+  color: #646669;
+  display: block;
+}
+
+
+.edit {
+  background-color:#FFFFFF;
+  border:1px solid #D1D1D1;
+  color:#646669;
+  font-size:12px;
+  height:12px;
+  padding:3px;
+  width:210px;
+}
+
+.button {
+  background-color:#FFFFFF;
+  border:1px solid #D1D1D1;
+  font-size:12px;
+  margin-bottom:5px;
+  padding:3px;
+  color: #646669;
+  width:80px;
+  height: 22px;
+}

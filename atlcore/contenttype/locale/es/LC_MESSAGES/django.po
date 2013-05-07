@@ -1,0 +1,373 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-02-16 13:15-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: admin/__init__.py:18 admin/__init__.py:32 admin/__init__.py:46
+#: admin/__init__.py:59 admin/__init__.py:68 admin/__init__.py:81
+#: admin/__init__.py:94 admin/__init__.py:107 admin/__init__.py:120
+msgid "Main information"
+msgstr ""
+
+#: admin/__init__.py:19 admin/__init__.py:34 admin/__init__.py:47
+#: admin/__init__.py:70 admin/__init__.py:83 admin/__init__.py:96
+#: admin/__init__.py:109 admin/__init__.py:122
+msgid "Metadata"
+msgstr ""
+
+#: admin/base.py:187 admin/base.py:328 admin/base.py:561 admin/base.py:723
+#, python-format
+msgid "%(name)s object with primary key %(key)r does not exist."
+msgstr ""
+
+#: admin/base.py:200
+#, python-format
+msgid "The %(name)s \"%(obj)s\" was deleted successfully."
+msgstr ""
+
+#: admin/base.py:212 admin/delete_selected.py:52
+msgid "Are you sure?"
+msgstr ""
+
+#: admin/base.py:237
+#, python-format
+msgid "The %(name)s \"%(obj)s\" was added successfully."
+msgstr ""
+
+#: admin/base.py:241 admin/base.py:274
+msgid "You may edit it again below."
+msgstr ""
+
+#: admin/base.py:251 admin/base.py:284
+#, python-format
+msgid "You may add another %s below."
+msgstr ""
+
+#: admin/base.py:272
+#, python-format
+msgid "The %(name)s \"%(obj)s\" was changed successfully."
+msgstr ""
+
+#: admin/base.py:280
+#, python-format
+msgid ""
+"The %(name)s \"%(obj)s\" was added successfully. You may edit it again below."
+msgstr ""
+
+#: admin/base.py:690 admin/base.py:698
+msgid "Permissions"
+msgstr ""
+
+#: admin/base.py:744
+msgid "At least one option must be marked"
+msgstr ""
+
+#: admin/base.py:748
+msgid "The filter for this folder has been changed successfully"
+msgstr ""
+
+#: admin/base.py:750
+#, python-format
+msgid "%s configuration"
+msgstr ""
+
+#: admin/delete_selected.py:53
+msgid "Objects"
+msgstr ""
+
+#: admin/delete_selected.py:58
+msgid "Delete selected"
+msgstr ""
+
+#: models/audio.py:11 models/audio.py:18
+msgid "audio"
+msgstr ""
+
+#: models/audio.py:19
+msgid "audios"
+msgstr ""
+
+#: models/banner.py:10
+msgid "Image"
+msgstr ""
+
+#: models/banner.py:18 models/link.py:11
+msgid "url"
+msgstr ""
+
+#: models/banner.py:19 models/document.py:12 models/news.py:12
+msgid "obsolete date"
+msgstr ""
+
+#: models/banner.py:20
+msgid "resource type"
+msgstr ""
+
+#: models/banner.py:21
+msgid "image"
+msgstr ""
+
+#: models/banner.py:22
+msgid "flash"
+msgstr ""
+
+#: models/banner.py:23
+msgid "width"
+msgstr ""
+
+#: models/banner.py:24
+msgid "height"
+msgstr ""
+
+#: models/banner.py:25 models/link.py:13
+msgid "open in new page"
+msgstr ""
+
+#: models/banner.py:31
+msgid "banner"
+msgstr ""
+
+#: models/banner.py:32
+msgid "banners"
+msgstr ""
+
+#: models/container.py:50 models/container.py:94
+#, python-format
+msgid "The model %s is abstract, so it cannot be registered in a Container."
+msgstr ""
+
+#: models/container.py:53 models/container.py:97
+#, python-format
+msgid "The model %s is already registered"
+msgstr ""
+
+#: models/content.py:11
+msgid "contributor"
+msgstr ""
+
+#: models/content.py:12
+msgid "coverage"
+msgstr ""
+
+#: models/content.py:13
+msgid "creator"
+msgstr ""
+
+#: models/content.py:14
+msgid "format"
+msgstr ""
+
+#: models/content.py:15
+msgid "publisher"
+msgstr ""
+
+#: models/content.py:16
+msgid "rights"
+msgstr ""
+
+#: models/content.py:17
+msgid "source"
+msgstr ""
+
+#: models/content.py:18
+msgid "subject"
+msgstr ""
+
+#: models/content.py:19
+msgid "type"
+msgstr ""
+
+#: models/document.py:11 models/news.py:11
+msgid "body"
+msgstr ""
+
+#: models/document.py:19
+msgid "document"
+msgstr ""
+
+#: models/document.py:20
+msgid "documents"
+msgstr ""
+
+#: models/file.py:10 models/file.py:17
+msgid "file"
+msgstr ""
+
+#: models/file.py:18
+msgid "files"
+msgstr ""
+
+#: models/folder.py:10
+msgid "folder"
+msgstr ""
+
+#: models/folder.py:11
+msgid "folders"
+msgstr ""
+
+#: models/image.py:16
+msgid "picture"
+msgstr ""
+
+#: models/image.py:17
+msgid "pictures"
+msgstr ""
+
+#: models/link.py:12
+msgid "icon"
+msgstr ""
+
+#: models/link.py:20
+msgid "link"
+msgstr ""
+
+#: models/link.py:21
+msgid "links"
+msgstr ""
+
+#: models/map.py:10
+msgid "embeded map"
+msgstr ""
+
+#: models/map.py:51
+msgid "map"
+msgstr ""
+
+#: models/map.py:52
+msgid "maps"
+msgstr ""
+
+#: models/news.py:19 models/news.py:20
+msgid "news"
+msgstr "noticias"
+
+#: models/node.py:26
+msgid "Public"
+msgstr ""
+
+#: models/node.py:26
+msgid "Private"
+msgstr ""
+
+#: models/node.py:34
+msgid "title"
+msgstr ""
+
+#: models/node.py:35
+msgid "slug"
+msgstr ""
+
+#: models/node.py:36
+msgid "description"
+msgstr ""
+
+#: models/node.py:37
+msgid "date"
+msgstr ""
+
+#: models/node.py:38 models/node.py:47
+msgid "update date"
+msgstr ""
+
+#: models/node.py:40
+msgid "language"
+msgstr ""
+
+#: models/node.py:41
+msgid "Neutral"
+msgstr ""
+
+#: models/node.py:42
+msgid "owner"
+msgstr ""
+
+#: models/node.py:43
+msgid "sites"
+msgstr ""
+
+#: models/node.py:44
+msgid "state"
+msgstr ""
+
+#: models/node.py:46
+msgid "creation date"
+msgstr ""
+
+#: models/node.py:51
+msgid "aspect"
+msgstr ""
+
+#: models/node.py:52
+msgid "original aspect"
+msgstr ""
+
+#: models/video.py:10
+msgid "Local file"
+msgstr ""
+
+#: models/video.py:11
+msgid "FTP Folder"
+msgstr ""
+
+#: models/video.py:12
+msgid "External URL"
+msgstr ""
+
+#: models/video.py:13
+msgid "Embeded video"
+msgstr ""
+
+#: models/video.py:21 models/video.py:35
+msgid "video"
+msgstr ""
+
+#: models/video.py:22
+msgid "video from ftp folder"
+msgstr ""
+
+#: models/video.py:23
+msgid "external URL"
+msgstr ""
+
+#: models/video.py:24
+msgid "file source"
+msgstr ""
+
+#: models/video.py:25
+msgid "embeded video"
+msgstr ""
+
+#: models/video.py:26
+msgid "thumbnail"
+msgstr ""
+
+#: models/video.py:27
+msgid "x aspect ratio"
+msgstr ""
+
+#: models/video.py:28
+msgid "y aspect ratio"
+msgstr ""
+
+#: models/video.py:36
+msgid "videos"
+msgstr ""
+
+#: templates/contenttype/file/details.html:12
+msgid "download"
+msgstr ""

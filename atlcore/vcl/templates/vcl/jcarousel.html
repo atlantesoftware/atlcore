@@ -1,0 +1,14 @@
+{% load vcl %}
+
+<ul id="{{component.id}}" class="jcarousel-skin-{{component.theme}}">
+	{% for node in component.data_provider %}
+		<li>{% show_component node %}</li>
+	{% endfor %}
+</ul>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#{{component.id}}').jcarousel({{component.config|safe}});
+});
+
+</script>

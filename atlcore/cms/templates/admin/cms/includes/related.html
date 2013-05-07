@@ -1,0 +1,27 @@
+{% load i18n %}
+{% if relation_types or relations %}
+<div id="content-related">
+    <div class="module {% if not relations %}hide{% endif %}" id="relations">
+        <h2>{% trans 'Relations' %}</h2>
+		<ul class="actionlist" id="relation_list">
+        {% for relation, pos in relations %}
+		<li class="related_item">
+			{{relation}}
+			<a onclick="return showInPopup(this, 'change');" id="change_relation_{{relation.id}}" class="changelink" href="{% url 'admin:relations_atlrelationsinstance_change' relation.id %}?ct_id={{content_type_id}}&obj{{pos}}_id={{relation_object.id}}"></a>
+			<a id="delete_relation_{{relation.id}}" class="deletelink" href="{{relation.admin_url}}delete?ct_id={{content_type_id}}&obj{{pos}}_id={{relation_object.id}}"></a>	
+		</li>	
+		{% endfor%}
+		</ul>
+    </div>
+    {% if relation_types %}
+    <div class="module" id="relation_types">
+        <h2>{% trans 'Add relation' %}</h2>
+        <ul class="actionlist">
+        {% for relation_type, pos in relation_types %}
+		<li class="addlink"><a onclick="return showInPopup(this, 'add');" id="add_relation_{{relation_type.id}}" class="add-another" href="{% url 'admin:relations_atlrelationsinstance_add' %}?relation={{relation_type.id}}&ct_id={{content_type_id}}&obj{{pos}}_id={{relation_object.id}}"> {{relation_type}}</a></li>
+        {% endfor%}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+{% endif %}

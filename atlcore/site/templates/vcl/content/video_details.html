@@ -1,0 +1,8 @@
+<div id="details">
+	{% load vcl %}
+	{% show_component component.video_player %}
+	<h1>{{component.data_provider.title}}</h1>
+	{% if component.source.body %}
+		<div class="field_body">{{component.source.body|safe}}</div>
+	{% endif %}
+</div>

@@ -1,0 +1,67 @@
+{% extends "admin/change_form.html" %}
+{% load i18n adminmedia %}
+
+{% block extrahead %}{{ block.super }}
+<script type='text/javascript'>
+    jQuery(document).ready(function(){
+        parent_widget = jQuery('#id_parent').children("[value={{container_id}}]");
+        parent_widget_container = jQuery('.form-row.parent');
+        parent_widget.attr('selected', 'selected');
+        parent_widget_container.hide();
+		
+		site_widget = jQuery('#id_sites');
+		site_widget_container = jQuery('.form-row.sites')
+		if (site_widget.children().length == 1) {
+			jQuery(site_widget.children()[0]).attr('selected', 'selected');
+			site_widget_container.hide();
+		} 
+		
+		 /* Parte del owner */
+		owner_widget = jQuery('#id_owner');
+        owner_widget_container = jQuery('.form-row.owner');
+        if ($(owner_widget).val() == ""){
+        	$(owner_widget).val('{{user.id}}');
+        }
+        owner_widget_container.hide();
+    });            
+</script>
+
+
+<style>
+div	#content-related {
+    float: right;
+    margin-right: 0em;
+    position: relative;
+    width: 18em;
+}
+	
+	
+</style>
+
+
+{% include 'admin/schedule/event/includes/js.html' %}
+{% endblock %}
+
+
+
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{{ATL_MEDIA_URL}}admin/css/schedule_rules.css" />
+{% endblock %}
+
+{% block after_field_sets %}
+{% include 'admin/schedule/event/includes/occurrence_options.html' %}
+
+
+
+{{ block.super }}
+
+{% endblock %}
+
+
+{% block sidebar %}
+
+{% include "admin/cms/includes/related.html" %}
+
+{% endblock %}
+
+

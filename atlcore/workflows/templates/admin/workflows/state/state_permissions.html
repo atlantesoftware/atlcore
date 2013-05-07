@@ -1,0 +1,194 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_modify adminmedia %}
+
+{% block extrahead %}{{ block.super }}
+<script type="text/javascript" src="../../../jsi18n/"></script>
+{#<script type='text/javascript' src="{{ATLANTE_CMS_MEDIA_URL}}admin/js/object_actions.js"></script>#}
+{{ media }}
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/forms.css" />{% endblock %}
+
+{% block coltype %}{% if ordered_objects %}colMS{% else %}colM{% endif %}{% endblock %}
+
+{% block bodyclass %}{{ opts.app_label }}-{{ opts.object_name.lower }} change-form{% endblock %}
+
+{% block breadcrumbs %}{% if not is_popup %}
+<a href="{% url admin:index %}">{% trans "Home" %}</a> &rsaquo;
+<a href="{% url admin:conf-url %}">{% trans "Configuration" %}</a> &rsaquo;
+<a href="../../../">{{ app_label|capfirst|escape }}</a> &rsaquo; 
+{% if has_change_permission %}<a href="../../">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %} &rsaquo; 
+<a href="../">{{state.name}}</a> &rsaquo;
+{% trans 'permissions' %}
+{% endif %}{% endblock %}
+
+{% block content %}
+<script type="text/javascript">
+    function append_row(table, select, type){
+        var t = document.getElementById(table);
+		var s = document.getElementById(select);
+        var tbody = t.getElementsByTagName("tbody")[0];
+        var tr = document.createElement("tr");
+		var td0 = document.createElement("td");
+        var td1 = document.createElement("td");
+        var td2 = document.createElement("td");
+        var td3 = document.createElement("td");
+        var td4 = document.createElement("td");
+		var index = s.selectedIndex;
+        td0.innerHTML = s.options[index].text; 
+		td1.innerHTML = "<input name='" + type + "_add_" + s.options[index].value + "' id='" + type + "_add_" + s.options[index].value + "' type='checkbox' />";
+        td2.innerHTML = "<input name='" + type + "_read_" + s.options[index].value + "' id='" + type + "_read_" + s.options[index].value + "' type='checkbox' />";
+        td3.innerHTML = "<input name='" + type + "_change_" + s.options[index].value + "' id='" + type + "_change_" + s.options[index].value + "' type='checkbox' />";
+        td4.innerHTML = "<input name='" + type + "_delete_" + s.options[index].value + "' id='" + type + "_delete_" + s.options[index].value + "' type='checkbox' />";
+        s.remove(index);
+        tr.appendChild(td0);
+		tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(td4);
+        tbody.appendChild(tr);
+    }
+</script>
+<form action="." method="post">
+	{% csrf_token %}
+	
+<table id="owner_permissions">
+        <thead>
+            <tr>
+                <th>
+                    {% trans 'Owner' %}          
+                </th>
+                <th>
+                    {% trans 'Add permission' %}          
+                </th>
+                <th>
+                    {% trans 'Read permission' %}          
+                </th>
+                <th>
+                    {% trans 'Change permission' %}          
+                </th>
+                <th>
+                    {% trans 'Delete permission' %}          
+                </th>   
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>
+                    {% trans 'owner' %}      
+                </th>
+                <th>
+                    <input name="owner_add" id="owner_add" type="checkbox" {% if owner and owner.can_add %}checked="checked"{% endif %} />          
+                </th>
+                <th>
+                    <input name="owner_read" id="owner_read" type="checkbox" {% if owner and owner.can_read %}checked="checked"{% endif %} />
+                </th>
+                <th>
+                    <input name="owner_change" id="owner_change" type="checkbox" {% if owner and owner.can_change %}checked="checked"{% endif %} />       
+                </th>
+                <th>
+                    <input name="owner_delete" id="owner_delete" type="checkbox" {% if owner and owner.can_delete %}checked="checked"{% endif %} />        
+                </th>   
+            </tr>
+        </tbody>
+    </table>	
+	
+	<select id="users">
+		{% for user in users %}
+		<option value="{{user.id}}">{{user.username}}</option>
+		{% endfor %}
+	</select>
+	<p><a href="javascript:void(0);" onclick="append_row('users_permissions', 'users', 'user');">{% trans 'add user pemissions' %}</a></p>
+	<table id="users_permissions">
+		<thead>
+			<tr>
+				<th>
+					{% trans 'User' %}			
+				</th>
+	            <th>
+	                {% trans 'Add permission' %}          
+	            </th>
+                <th>
+                    {% trans 'Read permission' %}          
+                </th>
+	            <th>
+	                {% trans 'Change permission' %}          
+	            </th>
+	            <th>
+	                {% trans 'Delete permission' %}          
+	            </th>	
+			</tr>
+		</thead>
+		<tbody>
+	        {% for p in users_perm %}
+	        <tr>
+	            <th>
+	                {{p.user.username}}         
+	            </th>
+                <th>
+                    <input name="user_add_{{p.user.id}}" id="user_add_{{p.user.id}}" type="checkbox" {% if p.can_add %}checked="checked"{% endif %} />          
+                </th>
+	            <th>
+	            	<input name="user_read_{{p.user.id}}" id="user_read_{{p.user.id}}" type="checkbox" {% if p.can_read %}checked="checked"{% endif %} />
+	            </th>
+	            <th>
+	                <input name="user_change_{{p.user.id}}" id="user_change_{{p.user.id}}" type="checkbox" {% if p.can_change %}checked="checked"{% endif %} />       
+	            </th>
+	            <th>
+	                <input name="user_delete_{{p.user.id}}" id="user_delete_{{p.user.id}}" type="checkbox" {% if p.can_delete %}checked="checked"{% endif %} />        
+	            </th>   
+	        </tr>	
+	        {% endfor %}
+		</tbody>
+	</table>
+	<select id="groups">
+	    {% for group in groups %}
+	    <option value="{{group.id}}">{{group.name}}</option>
+	    {% endfor %}
+	</select>
+	<p><a href="javascript:void(0);" onclick="append_row('groups_permissions', 'groups', 'group');">{% trans 'add group pemissions' %}</a></p>
+	<table id="groups_permissions">
+	    <thead>
+	        <tr>
+	            <th>
+	                {% trans 'Group' %}          
+	            </th>
+	            <th>
+	                {% trans 'Add permission' %}          
+	            </th>
+                <th>
+                    {% trans 'Read permission' %}          
+                </th>				
+	            <th>
+	                {% trans 'Change permission' %}          
+	            </th>
+	            <th>
+	                {% trans 'Delete permission' %}          
+	            </th>   
+	        </tr>
+	    </thead>
+	    <tbody>
+	        {% for p in groups_perm %}
+	        <tr>
+	            <th>
+	                {{p.group.name}}         
+	            </th>
+	            <th>
+	                <input name="group_add_{{p.group.id}}" id="group_add_{{p.group.id}}" type="checkbox" {% if p.can_add %}checked="checked"{% endif %} />
+	            </th>
+				<th>
+                    <input name="group_read_{{p.group.id}}" id="group_read_{{p.group.id}}" type="checkbox" {% if p.can_read %}checked="checked"{% endif %} />
+                </th>
+	            <th>
+	                <input name="group_change_{{p.group.id}}" id="group_change_{{p.group.id}}" type="checkbox" {% if p.can_change %}checked="checked"{% endif %} />       
+	            </th>
+	            <th>
+	                <input name="group_delete_{{p.group.id}}" id="group_delete_{{p.group.id}}" type="checkbox" {% if p.can_delete %}checked="checked"{% endif %} />        
+	            </th>   
+	        </tr>   
+	        {% endfor %}
+	    </tbody>
+	</table>
+    <p><input type="submit" value="{% trans 'Save' %}" /></p>
+</form>
+{% endblock %}

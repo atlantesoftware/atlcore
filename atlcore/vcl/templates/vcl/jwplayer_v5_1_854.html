@@ -1,0 +1,18 @@
+
+{%if component.data_provider.video_source == 'embeded' %}
+<div id="{{component.id}}"> 
+	{{component.data_provider.embeded_video|safe}}
+</div>
+{% else %}
+
+<div id="{{component.id}}"> 
+	Loading the player ...
+</div>
+
+
+<script type="text/javascript">
+	$(function(){ 
+		jwplayer("{{component.id}}").setup({{component.config|safe}});
+	}); 
+</script>
+{% endif %}

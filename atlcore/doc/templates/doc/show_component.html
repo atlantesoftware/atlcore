@@ -1,0 +1,15 @@
+{% extends 'doc/layout.html' %}
+{% load vcl %}
+
+{% block main %}
+		<h2>Demo</h2>
+		<div id="demo">
+			{% show_component component%}
+		</div>	
+		<h2>Código</h2>
+		<div class='code_example'>
+			<xmp>
+
+			</xmp>
+		</div>	
+{% endblock%}

@@ -1,0 +1,14 @@
+	<div class="container_thumbnails">
+		{% if component.data_provider.getChildren|length > 0 %}
+		<ul class="children">
+		{% for child in component.data_provider.getChildren %}
+		<li><div>
+			<a href="{{child.get_absolute_url}}">
+				<img src="{{child.get_image_thumbnail}}"/>
+			</a></div>
+		</li>
+		{% endfor %}
+		{% endif %}
+		</ul>
+	
+	</div>

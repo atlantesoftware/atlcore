@@ -1,0 +1,24 @@
+{% extends base_detail_template|default:"contenttype/base.html" %}
+{% load i18n %}
+
+{% block main-content %}
+    <div id="details">
+        {% if object.creator %}
+            <div class="field_creator">{{object.creator}}</div>
+        {% endif %}
+        {% if object.contributor %}
+            <div class="field_contributor">{{object.contributor}}</div>
+        {% endif %}
+		{% if object.is_embeded %}
+		<div id="video_player">{{object.embeded_video|safe}}</div>
+		{% else %}
+        <div id="video_player"></div>
+        {%comment%}
+		{% include "contenttype/includes/video_player.html" %}
+		{%endcomment%}
+		{% endif %}		
+        {% if object.description %}
+            <div class="description">{{object.description|safe}}</div>
+        {% endif %}
+    </div>
+{% endblock %}

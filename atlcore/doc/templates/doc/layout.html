@@ -1,0 +1,21 @@
+{% extends 'site/base.html' %}
+{% load vcl %}
+
+{% block styles%}
+	{{block.super}}
+	<link rel="stylesheet" type="text/css" href="{{ATL_MEDIA_URL}}doc/css/styles.css" />
+{% endblock %}
+
+{% block content %}
+<div id="container">
+	<div id="left-column">
+		{% block left_column %}
+			{% show_component nav_menu %}
+		{% endblock %}
+	</div>
+	<div id="right-column">
+		{% block main %}
+		{% endblock%}
+	</div> 
+</div>
+{% endblock%}

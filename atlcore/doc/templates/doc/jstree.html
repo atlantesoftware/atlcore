@@ -1,0 +1,14 @@
+{% extends 'doc/layout.html' %}
+{% load vcl %}
+
+{% block styles%}
+	{{block.super}}
+	<link rel="stylesheet" type="text/css" href="{{ATL_MEDIA_URL}}doc/css/styles.css" />
+{% endblock %}
+
+{% block main %}
+		<h2>Demo</h2>
+		<div id="demo">
+			{% show_component jstree%}
+		</div>		
+{% endblock%}

@@ -1,0 +1,73 @@
+
+div.gallery {
+	width:333px;
+	height:219px;
+}
+
+
+div.item_gallery {
+	width:156px;
+	height:95px;
+	float:left;
+	margin-right:21px;
+	margin-bottom:21px;
+}
+
+div.gallery h1, div.gallery div.description {
+	display:none;
+}
+
+div.item_gallery.right {
+	margin-right:0px;
+}
+
+div.pager ul {
+	float:right;
+	width:330px;
+}
+
+div.pager ul li.right {
+	float:right;
+}
+
+div.pager {
+	text-align:right;
+	height:15px;
+	float:right;
+	width:330px;
+	padding-top: 4px;
+}
+
+div.pager a.nav_prev.disabled, div.pager a.nav_next.disabled{
+	cursor:auto;
+	opacity: 0.5;
+	filter:alpha(opacity=50);
+}
+
+div.pager a.nav_prev{
+	background-image: url("../images/nav_prev.png");
+    background-repeat: no-repeat;
+    display: block;
+    height: 9px;
+    width: 30px;
+    float:left;
+}
+
+div.pager a.nav_next{
+	background-image: url(../images/nav_next.png);
+	background-repeat: no-repeat;
+	display: block;
+    height: 9px;
+    width: 30px;
+    float:right;
+}
+
+
+
+.heading_section {
+	overflow:hidden;
+}
+
+.heading_section span{
+	display:none;
+}

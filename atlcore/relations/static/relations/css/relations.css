@@ -1,0 +1,9 @@
+.object1_id,
+.object2_id,
+.content_type1_id,
+.content_type2_id,
+.readonly,
+.readonly_obj1,
+.readonly_obj2{
+	display:none;
+}

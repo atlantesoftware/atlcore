@@ -1,0 +1,14 @@
+{% load vcl %}
+<ul id="{{component.id}}" >
+{% for item in component.nodes %}
+	{% if forloop.first %}
+		<li class="first">{% show_component item view_type %}</li>
+	{% else %}
+		{% if forloop.last %}
+		<li class="last">{% show_component item view_type %}</li>
+		{% else %}
+		<li>{% show_component item view_type %}</li>
+		{% endif %}
+	{% endif %}
+{% endfor %}
+</ul>

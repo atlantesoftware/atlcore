@@ -1,0 +1,309 @@
+{% load i18n %}
+<script type="text/javascript">
+var full_lang = '{{LANGUAGE}}';
+lang = full_lang[0] + full_lang[1];
+</script>
+<script type='text/javascript' src="{{ATL_MEDIA_URL}}common/js/jquery.ui.core.js"></script>
+<script type='text/javascript' src="{{ATL_MEDIA_URL}}common/js/jquery.ui.widget.js"></script>
+<script type='text/javascript' src="{{ATL_MEDIA_URL}}common/js/jquery.ui.datepicker.js"></script>
+{% if LANGUAGE|slice:":2" != "en" %}
+<script type='text/javascript' src="{{ATL_MEDIA_URL}}common/js/i18n/jquery.ui.datepicker-{{LANGUAGE|slice:":2"}}.js"></script>
+{% endif %}
+<script type='text/javascript' src="{{ATL_MEDIA_URL}}admin/js/schedule_rules.js"></script>
+<script type="text/javascript">
+  
+var parent_widget = jQuery('#id_parent').children("[value={{container_id}}]");
+var parent_widget_container = jQuery('.form-row.parent');
+parent_widget.attr('selected', 'selected');
+parent_widget_container.hide();
+
+site_widget = jQuery('#id_sites');
+site_widget_container = jQuery('.form-row.sites')
+if (site_widget.children().length == 1) {
+	jQuery(site_widget.children()[0]).attr('selected', 'selected');
+	site_widget_container.hide();
+}   
+  
+function hide_hidden(){
+  jQuery('.params').css('display', 'none');
+  jQuery('.date').css('display', 'none');
+  jQuery(".end_recurring_period").css('display', 'none');
+}
+
+function up_monthly(){
+  var day = jQuery( "#start_on_value" ).val()
+  if (day.length>=2){
+    var day_re = /\d{1,2}/;
+    day = day_re.exec(day);
+    if(day!=null){
+      day = day[0];
+      var val = jQuery("input[name=monthday]:checked").val();   
+      if(val=='byweekday'){
+        var tday = parseInt(day)-1;
+        var week = parseInt(tday/7 + 1);
+        val += ':(+' + week + ')';
+      }
+      else if(val=='bymonthday'){ 
+        val += ':' + day;   
+      }
+      jQuery("#bymonthday").val(val);     
+    }
+  }
+}
+
+function up_times(){
+  var checked = jQuery("#id_full_day").attr('checked');
+  if(checked){
+    jQuery(".start_time").css('display', 'none');   
+    jQuery("#id_start_time").val('00:00:00');   
+    jQuery(".end_time").css('display', 'none');
+    jQuery("#id_end_time").val('23:59:00');
+  }
+  else{
+    jQuery(".start_time").css('display', 'block');
+    //jQuery("#id_start_time").val('');     
+    jQuery(".end_time").css('display', 'block');
+    //jQuery("#id_end_time").val(''); 
+  }
+}
+
+function refresh_form(){
+  var value = jQuery('#id_frequency').val();
+  jQuery('.re_weekly').css('display', 'none');
+  jQuery('.re_monthly').css('display', 'none');
+  var val = ''; 
+  switch(value){
+    case "YEARLY":
+      val = '{% trans "Years" %}';
+      jQuery('#occurrence').css('display', 'block');
+      jQuery('div#frequency_row').css('display', 'block');
+      break;
+    case "MONTHLY":
+      val = '{% trans "Months" %}';
+      jQuery('.re_monthly').css('display', 'block');
+      jQuery('#occurrence').css('display', 'block');
+      jQuery('div#frequency_row').css('display', 'block');
+      break;
+    case "WEEKLY":
+      val = '{% trans "Weeks" %}';
+      jQuery('.re_weekly').css('display', 'block');
+      jQuery('#occurrence').css('display', 'block');
+      jQuery('div#frequency_row').css('display', 'none');
+      break;
+    case "DAILY":
+      val = '{% trans "Days" %}';
+      jQuery('#occurrence').css('display', 'block');
+      jQuery('div#frequency_row').css('display', 'block');
+      break;
+    default:
+      jQuery('#occurrence').css('display', 'none');     
+  }
+  jQuery('#interval_name').html(val);
+}
+
+function set_params(){
+  var cad = "";
+  var interval = parseInt(jQuery('#interval').val());
+  var freq = jQuery('#id_frequency').val();
+  if(!isNaN(interval)){
+    cad += "interval:" + interval + ";";
+  }
+  var start_on_value = jQuery('#start_on_value').val();
+  if((start_on_value != undefined) && (start_on_value != '')){
+    cad += "dtstart:date" + start_on_value + ";";
+  }
+  var mirror_until_value = jQuery('#mirror_until_value').val();
+  if(mirror_until_value != undefined && mirror_until_value != ''){
+    cad += "until:date" + mirror_until_value + ";";
+  }
+  if(freq == 'WEEKLY'){
+    var byweekday = jQuery('#byweekday').val();
+    if(byweekday != undefined && byweekday != ''){
+      cad += "byweekday:" + byweekday + ";";
+    }
+    //alert(cad);
+  }
+  if(freq == 'MONTHLY'){
+    var bymonthday = jQuery('#bymonthday').val();
+    if(bymonthday != undefined && bymonthday != ''){
+      cad += bymonthday + ";";
+    }
+  }
+  jQuery('#id_params').val(cad);
+}
+
+function up_until_date(){
+  var id = jQuery("input[name=endson]:checked").attr('id');
+  if('mirror_never'==id){
+    jQuery("#mirror_until_value_wrapper").css('display', 'none');
+    jQuery("#mirror_until_value").val('');
+    jQuery("#mirror_until_pk").val('');
+  }
+  else{
+    jQuery("#mirror_until_value_wrapper").css('display', 'inline');       
+  }
+  
+  
+  
+}
+
+function set_dates(){
+  var val = jQuery( "#id_start" ).val();
+  jQuery( "#start_on_value" ).val(val);
+  val = jQuery( "#mirror_until_pk" ).val();
+  jQuery( "#mirror_until_value" ).val(val); 
+}
+
+function load_from_params(){
+  var params = jQuery('#id_params').html();
+  var until_date_re = /until:date\d{2}\/\d{2}\/\d{4}/;
+  var until = until_date_re.exec(params);
+  if (until != null){
+    var date_re = /\d{2}\/\d{2}\/\d{4}/;
+    var date = date_re.exec(until[0]);
+    if(date!=null){
+      jQuery('#mirror_until').attr('checked', 'checked');
+      jQuery('#mirror_until_pk').val(date[0]);
+      jQuery('#mirror_until_value').val(date[0]);
+    }
+  }
+
+  var frequency = jQuery('#id_frequency').val();
+  if(frequency=="WEEKLY"){
+    var days_re = /byweekday:\d{1,2}(,\d{1,2})*/;
+    var days = days_re.exec(params);
+    if(days!=null){
+      var nums_re = /\d{1,2}(,\d{1,2})*/;
+      var nums = nums_re.exec(days[0]);
+      if(nums != null){
+        var wdays = nums[0].split(',');
+        for(var i=0; i<wdays.length; i++){
+          jQuery('#day'+wdays[i]).attr('checked', 'checked');
+        }
+      }
+    }
+  }
+  else if(frequency=="MONTHLY"){
+    var repeat_re = /byweekday/;
+    if(repeat_re.test(params)){
+      jQuery('#mday1').attr('checked', 'checked');
+    }
+    else{
+      jQuery('#mday0').attr('checked', 'checked');
+    }
+  }
+}
+
+jQuery(document).ready(function(){
+  hide_hidden();
+  up_times();
+  load_from_params();
+  refresh_form();
+  set_dates();
+  up_monthly();
+  up_until_date();
+  
+  //
+  if ($("input#id_end_recurring_period_0").val()!= ""){
+  		$('#mirror_until').attr('checked', 'true');
+  		jQuery("#mirror_until_value_wrapper").css('display', 'inline'); 
+		$('input#id_end_recurring_period.vDateField').val($("input#id_end_recurring_period_0").val());	
+	}
+  
+   $("form").submit(function(){
+  	//alert($("input#id_end_recurring_period").val());
+  	if ($('#mirror_until').attr('checked')){
+  		if ($("input#id_end_recurring_period").val()!= ""){
+	  		$('input#id_end_recurring_period_0.vDateField').val($("input#id_end_recurring_period").val());	
+	  		$('input#id_end_recurring_period_1.vTimeField').val('23:59:59');
+	  	}
+  	}
+  	
+	
+	if ($('#mirror_never').attr('checked')){
+		$('input#id_end_recurring_period_0.vDateField').val(null);
+		$('input#id_end_recurring_period_1.vTimeField').val(null);
+		$("input#id_end_recurring_period").val(null);
+	}
+	
+  }); 
+  
+  
+});
+  
+jQuery(function() {
+  
+  jQuery.datepicker.setDefaults( jQuery.datepicker.regional[ "" ] );
+  if(lang!='en'){
+    jQuery.datepicker.setDefaults( jQuery.datepicker.regional[ lang ] );    
+  }
+  
+  jQuery.datepicker.setDefaults({
+    showOn: "button",
+    buttonImage: "/media/admin/img/admin/icon_calendar.gif", //"{{ATL_MEDIA_URL}}common/images/calendar.gif",
+    buttonImageOnly: true,    
+  });
+  
+  jQuery( "#id_start" ).datepicker({
+      altField: "#start_on_value",
+      altFormat: "d/mm/yy"
+  });
+  
+  jQuery("#id_start").change(function() {
+    up_monthly();
+    set_params();
+  }); 
+  
+  jQuery( "#mirror_until_pk" ).datepicker({ 
+    altField: "#mirror_until_value",
+    altFormat: "d/mm/yy"      
+  });
+  
+  jQuery("#mirror_until_pk").change(function() {
+    set_params();
+  }); 
+  
+  jQuery('#interval').change(function() {
+    set_params();
+  });
+  
+  jQuery("#id_start").change(function() {
+    set_params();
+  }); 
+  
+  jQuery('#id_frequency').change(function() {
+    refresh_form();
+    set_params();
+  });
+  
+  jQuery("#mirror_until").change(function() {
+    up_until_date();
+    //set_params();
+  }); 
+  
+  jQuery("#mirror_never").change(function() {
+    up_until_date();
+    //set_params();
+  }); 
+  
+  jQuery("input[name=weekday]").change(function(){
+    var l = [];
+    jQuery("input[name=weekday]:checked").each(function(index) {
+        l.push(jQuery(this).val());
+    });   
+    jQuery("#byweekday").val(l.join(','));
+    set_params();
+  });
+  
+  jQuery("input[name=monthday]").change(function(){
+    up_monthly();
+    set_params();
+  });
+  
+  jQuery("input[name=full_day]").change(function(){
+    up_times();
+  }); 
+  
+  
+});
+</script>

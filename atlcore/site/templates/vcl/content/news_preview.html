@@ -1,0 +1,17 @@
+
+	<div class="news_preview">
+		{% if component.data_provider.image %}
+			<img class="field_image" src="{{component.data_provider.image.url}}" alt="image" />
+		{% endif %}
+
+		{% if component.data_provider.creator %}
+			<div class="field_creator">{{component.data_provider.creator}}</div>
+		{% endif %}
+		<h1 class="field_title">{{component.data_provider.title}}</h1>
+		{% if component.data_provider.date %}
+			<div class="field_date">{{component.data_provider.date|date:"d.m.Y"}}</div>
+		{% endif %}
+		{% if component.data_provider.description %}
+			<div class="field_description">{{component.data_provider.description|safe}}</div>
+		{% endif %}
+	</div>

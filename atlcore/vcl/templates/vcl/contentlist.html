@@ -1,0 +1,16 @@
+{% load siteutils %}
+
+<div id="{{component.id}}" class="{{component.html_class}}">
+	<ul>
+		{% for item in component.items %}
+			<li class="{% if forloop.first %}first{% else %}{% if forloop.last %}last{% endif%}{% endif%}{%if item == component.selected %}selected{% endif %}">
+				{% if item.image %}
+					<img src="{{item.get_instance.image_absolute_url}}" alt="{{image.title}}"/>
+				{% endif %}
+				<h3><a href="">{{item.title}}</a></h3>
+				{{item.description|safe|truncatewords:33}}
+			</li>
+		{% endfor %}
+	</ul>
+	<div class="button"><a href="#">Más noticias</a></div>
+</div>

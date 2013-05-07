@@ -1,0 +1,5 @@
+<ul id="{{component.id}}" class="{{component.html_class}}">
+	{% for item in component.items %}
+		<li class="{% if forloop.first %}first{% else %}{% if forloop.last %}last{% endif%}{% endif%}{%if item == component.selected %}selected{% endif %}"> <a href="{{item.url}}">{{item.title}}</a></li>
+	{% endfor %}
+</ul>

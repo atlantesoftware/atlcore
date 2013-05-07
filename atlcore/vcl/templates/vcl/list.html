@@ -1,0 +1,14 @@
+
+<ul class="menu {{component.skin}}">
+{% for item in component.nodes %}
+	{% if forloop.first %}
+	<li class="first"><a href="{{item.url}}">{{item.text}}</a></li>
+	{% else %}
+		{% if forloop.last %}
+		<li class="last"><a href="{{item.url}}">{{item.text}}</a></li>
+		{% else %}
+		<li><a href="{{item.url}}">{{item.text}}</a></li>
+		{% endif %}
+	{% endif %}
+{% endfor %}
+</ul>

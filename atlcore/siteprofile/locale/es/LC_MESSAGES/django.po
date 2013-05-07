@@ -1,0 +1,48 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-10 09:55-0500\n"
+"PO-Revision-Date: 2010-12-10 09:03\n"
+"Last-Translator: <hailem@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"X-Translated-Using: django-rosetta 0.5.6\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: models.py:9
+msgid "site"
+msgstr "sitio"
+
+#: models.py:10
+msgid "keywords"
+msgstr "palabras clave"
+
+#: models.py:11
+msgid "description"
+msgstr "descripción"
+
+#: models.py:14
+msgid "contact email"
+msgstr "correo electrónico de contacto"
+
+#: models.py:24
+msgid "skin"
+msgstr "piel"
+
+#: models.py:32
+msgid "Site Profile"
+msgstr "Perfil del Sitio"
+
+#: models.py:33
+msgid "Sites Profile"
+msgstr "Perfil de los Sitios"

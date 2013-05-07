@@ -1,0 +1,36 @@
+<h1>{{parent_folder.title}}</h1>
+
+
+{% if parent_folder %}
+<div class="node-content">
+	<input type="hidden" value="{{parent_folder.get_parent.pk}}"/>
+	<div class="ui-small-folder"></div>
+	<div class="folder-title"> ..</div>	
+</div> 
+{% endif %}
+
+
+{% comment %}
+{% for folder in folder_list %}   
+	<div class="node-content">
+		<input type="hidden" value="{{folder.pk}}"/>
+		<div class="ui-small-folder"></div>
+		<div class="folder-title"> {{folder.title}}</div>	
+	</div>     	
+{% endfor %}
+{% for picture in picture_list %}   
+	<p>
+		{{picture.title}}
+	</p>     	
+{% endfor %} 
+{% endcomment %}
+
+{% for item in content_list %}   
+	<div class="node-content">
+		<input type="hidden" value="{{item.pk}}"/>
+		<div rel = "{{item.get_instance.get_absolute_url}}" class="ui-small-{% if item.content_type.model == "folder" %}folder{% else %}content{% endif %}"></div>
+		<div class="folder-title"> {{item.title}}</div>	
+	</div>     	
+{% endfor %}
+
+   

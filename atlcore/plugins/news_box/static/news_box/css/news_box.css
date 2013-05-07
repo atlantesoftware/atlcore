@@ -1,0 +1,11 @@
+.news_box img {
+	float: left; 
+	margin-right: 20px;
+	max-width: 220px;
+}
+
+.news_box p {
+	color: #b5b5b5;
+	font-size: 15px;
+	font-weight: normal;
+}

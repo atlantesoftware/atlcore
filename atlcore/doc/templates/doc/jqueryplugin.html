@@ -1,0 +1,26 @@
+{% extends 'doc/layout.html' %}
+{% load vcl %}
+
+{% block styles%}
+	{{block.super}}
+	<link rel="stylesheet" type="text/css" href="{{ATL_MEDIA_URL}}doc/css/styles.css" />
+{% endblock %}
+
+{% block scripts %}
+	{{block.super}}
+	<script type="text/javascript">
+		var chart1;
+	</script>
+{% endblock %}
+
+{% block main %}
+		<h2>Demo</h2>
+		<div id="demo">
+			<div id="chart1" style="width: 500px; height: 400px"></div>
+			{% show_component jqueryplugin%}
+		</div>	
+		<div>
+			
+			<p>{{ documentation }}</p>
+		</div>	
+{% endblock%}

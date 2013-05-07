@@ -1,0 +1,7 @@
+{% load vcl %}
+
+<span id="{{component.id}}" class="{{component.html_class}} ui-widget-header ui-corner-all">
+	{% for button in component.button_list %}
+		{% show_component button %}
+	{% endfor %}
+</span>

@@ -1,0 +1,16 @@
+{% extends "admin/delete_selected_confirmation.html" %}
+{% load i18n %}
+
+{% comment %}
+{% block breadcrumbs %}{% if not is_popup %}
+{% for obj in queryset|slice:":1" %}
+{{obj.parent|breadcrumbs:'delete'}}
+{% endfor %}
+{% endif %}{% endblock %}
+{% endcomment %}
+
+{% block content %}
+<div id="content-main">
+	{{ block.super }}
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+<ul id="{{component.id}}" class="{{component.html_class}}">
+	{% for item in component.items %}
+		<li class="{% if forloop.first %}first{% endif %} {% if forloop.last %}last{% endif%}{%if item == component.selected %}selected{% endif %}">
+				{% if item.sub_items %}
+					<a href="{{item.url}}" class="{% if item.selected %}selected{%endif%}" >
+						{%if item.image %}
+							<div class="icon_button"><img src="{{item.image}}" /></div>
+						{% else %}
+							{{item.title}}
+						{% endif %}
+					</a>
+					<ul id="submenu_{{item.id}}" class="{% if item.selected %}selected{%endif%}" >
+					{% for subitem in item.sub_items %}
+						<li class="{% if forloop.first %}first{% endif %} {% if forloop.last %}last{% endif%}{%if subitem == component.subitem_selected %}selected{% endif %}"> 
+						<a href="{{subitem.url}}" class="{% if subitem.selected %}selected{%endif%}">{{subitem.title}}</a>
+					{% endfor %}
+					</ul>
+				{% else %} 
+					<a href="{{item.url}}" class="{% if item.selected %}selected{%endif%}">
+						{%if item.image %}
+							<div class="icon_button"><img src="{{item.image}}" /></div>
+						{% else %}
+							{{item.title}}
+						{% endif %}
+					</a>
+				{% endif %}
+		</li>
+	{% endfor %}
+</ul>

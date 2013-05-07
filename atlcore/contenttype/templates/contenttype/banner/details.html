@@ -1,0 +1,20 @@
+{% extends base_detail_template|default:"contenttype/base.html" %}
+{% load i18n %}
+
+{% block main-content %}
+    <div id="details">
+        {% if object.is_flash %}
+        <object CLASSID="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
+            <param name="movie" value="{{object.flash.url}}">
+            <param name="play" value="true">
+            <param name="loop" value="true">
+            <param name="quality" value="high">
+            <embed src="{{object.get_file_url}}" quality="high" allowfullscreen="false" allowscriptaccess="always" />
+        </object>
+        {% else %}
+        <a href="{{object.get_absolute_url}}">
+            <img src="{% if object.image %}{{object.image.url}}{% endif %}" title="{{object.title}}"/>
+        </a>
+        {% endif %}
+    </div>
+{% endblock %}

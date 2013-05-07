@@ -1,0 +1,10 @@
+ {% load vcl %}
+ <script type="text/javascript">
+	$(function(){ 
+	  jQuery("#{{component.id}}").jqGrid({{component.config|safe}}); 
+	});
+</script>
+
+
+	<table id="{{component.id}}"></table> 
+	<div id="{{component.pager|cut:"#"}}"></div>

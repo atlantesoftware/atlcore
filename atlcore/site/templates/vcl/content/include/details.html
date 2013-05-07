@@ -1,0 +1,24 @@
+
+{% if component.data_provider.image %}
+	<img class="field_image" src="{{component.data_provider.image.url}}" alt="" />
+{% endif %}
+
+<h1 class="field_title">{{component.data_provider.title}}</h1>
+{% if component.data_provider.creator %}
+	<div class="field_creator">{{component.data_provider.creator}}</div>
+{% endif %}
+
+
+{% if component.data_provider.date %}
+	<div class="field_date">{{component.data_provider.date|date:"d.m.Y"}}</div>
+{% endif %}
+{% if component.data_provider.data_provider %}
+	<div class="field_data_provider">{{component.data_provider.data_provider}}</div>
+{% endif %}
+{% if component.data_provider.contributor %}
+	<div class="field_contributor">{{component.data_provider.contributor}}</div>
+{% endif %}
+{% if component.data_provider.description %}
+	<div class="field_description">{{component.data_provider.description|safe}}</div>
+{% endif %}
+

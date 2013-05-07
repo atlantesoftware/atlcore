@@ -1,0 +1,15 @@
+{% load i18n %}
+
+{%block video_player_content %}
+{%block video_player_container_element %}{%endblock%}
+{%endblock%}
+<script type="text/javascript" src="{{ATL_MEDIA_URL}}common/js/swfobject.js"></script>
+<script type='text/javascript'>
+var swfObj = new SWFObject('{{ATL_MEDIA_URL}}common/swf/player.swf','player','{% block video_width %}440{% endblock %}','{% block video_height %}328{% endblock %}','9');
+swfObj.addParam('allowfullscreen','true');
+swfObj.addParam('allowscriptaccess','always');
+swfObj.addParam('allowsnetworking','all');
+swfObj.addParam('flashvars','autostart=false&controlbar=over&backcolor=000000&skin={{ATL_MEDIA_URL}}common/swf/stylish.swf&file={{object.video.url}}&image={{object.thumbnail.url}}');
+{#swfObj.addParam('flashvars','autostart=false&controlbar=over&backcolor=000000&skin={{ATL_MEDIA_URL}}common/swf/stylish.swf&file={% if object.has_internal_src %}{{object.video.url}}{%else%}{{object.external_url}}{%endif%}&image={{object.thumbnail.url}}');#}
+swfObj.write('{%block video_player_element%}video_player{%endblock%}');
+</script>

@@ -1,0 +1,52 @@
+{% extends templateParent|default:"site/base.html" %}
+{% load i18n admin_static%}
+
+{% block styles %}
+{{block.super}}
+
+{% endblock %}
+
+{% block content %}
+<div class="container_12">
+	<div id="site_header" class="grid_12">
+		<a href="/"><img title="AtlanteCMS Site" atl="AtlanteCMS Site" src="{% static "atlcms/images/logo.png" %}" /></a>
+	</div>
+	<div class="clear"></div>
+	<div class="grid_3">
+		{% block left_column %}
+			<ul>
+			    {% for f in navigation_container %}
+			    <li><a href='{{f.get_absolute_url}}'>{{f.title}}</a></li>
+			    {% endfor %}
+			</ul>
+			{% endblock %}
+	</div>
+	<div class="grid_6">
+		    <div id="main">
+		        {% block main %}
+		                En este bloque saldrá el contenido principal de la página
+		        {% endblock %}
+		    </div>
+
+		
+	</div>
+	<div class="grid_3">
+		{% block right_column %}
+		{% endblock %}
+	</div>
+	<div class="clear"></div>
+	<div id="footer" class="grid_12">
+		<a class="atl_site" href="http://www.atlantesoftware.com">AtlanteSoftware 2010</a>
+	</div>
+	<div class="clear"></div>
+	<div class="grid_7 topSection">
+		
+		<div> xxx</div>
+	</div>
+	<div class="grid_5 topSection">
+		yyy
+	</div>
+</div>
+<!-- END Container -->
+
+{% endblock %}

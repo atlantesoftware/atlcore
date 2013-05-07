@@ -1,0 +1,5 @@
+{% if component.url == None%}
+<img src="{{component.src}}" alt="{{component.alt}}" />
+{% else %}
+<a href="{{component.url}}" target="{{component.target}}"><img src="{{component.src}}" alt="{{component.alt}}" title="{{component.alt}}" /></a>
+{% endif%}

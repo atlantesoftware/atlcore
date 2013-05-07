@@ -1,0 +1,18 @@
+{% extends base_detail_template|default:"contenttype/base.html" %}
+{% load i18n %}
+
+{% block main-content %}
+	<div id="details">
+		{% if object.creator %}
+			<div class="field_creator">{{object.creator}}</div>
+		{% endif %}
+		{% if object.contributor %}
+			<div class="field_contributor">{{object.contributor}}</div>
+		{% endif %}
+		<a href="{{object.get_file_url}}">{% trans 'download' %}</a>
+		{% if object.description %}
+			<div class="field_description">{{object.description|safe}}</div>
+		{% endif %}
+	</div>
+{% endblock %}
+

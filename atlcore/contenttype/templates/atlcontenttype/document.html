@@ -1,0 +1,17 @@
+{% extends request.current_page.get_template %}
+{% load i18n admin_static cms_tags sekizai_tags%}
+
+{% block main_content%}
+
+	{% addtoblock "css" %}<link rel="stylesheet" type="text/css" media="all" href="{% static "atlcontenttype/css/document.css" %}" /> {% endaddtoblock %}
+	<div class="document_content">
+		<div class="section_header">Noticias</div>
+		{% if atl_node.image %}
+			<img class="field_image" src="{{atl_node.image.url}}" />
+		{% endif %}
+		<h1 class="field_title">{{atl_node.title}}</h1>
+		<div class="field_body">
+			{{atl_node.body|safe}}	
+		</div>
+	</div>
+{% endblock %}

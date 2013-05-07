@@ -1,0 +1,36 @@
+{% extends "admin/base.html" %}
+{% load i18n lang %}
+
+{% block title %}{{ title }} | {% trans 'AtlCMS site admin' %}{% endblock %}
+
+{% block branding %}{% endblock %}
+
+{% block nav-global %}
+<form action="{% url 'admin:setlang' %}" method="post" id="language_form">{% csrf_token %}
+<ul>
+	{% url 'admin:conf-url' as conf_url %}
+	{% if conf_url %}
+    <li class="first">
+        <a href="{{ conf_url }}">{% trans 'Configuration' %}</a>
+    </li>
+	{% endif %}
+    <li class="{% if not conf_url %}first {% endif %}last">
+        {% trans 'Language' %}:
+    </li>
+    {% for lang in LANGUAGES %}
+    <li {% if forloop.last %}class="last"{% endif %}>
+        {% ifequal lang.0 LANGUAGE %}
+		<span><img src="{{ lang.0|lang_flag_url }}"  alt="{{ lang.1 }}" title="{{ lang.1 }}" /></span>
+		{% else%}
+		<a href="javascript:void(0);" onclick="change_language('{{ lang.0 }}');"><img src="{{ lang.0|lang_flag_url }}"  alt="{{ lang.1 }}" title="{{ lang.1 }}" /></a>
+{% comment %}		{% if object %}
+		<input type="hidden" id="lang_{{lang.0}}_id" value="{{ object|lang_redirect_url:lang.0 }}" />d
+		{% endif %}{% endcomment %}
+		{% endifequal %}
+    </li>
+    {% endfor %}
+	<input type="hidden" id="language" name="language" value="{{LANGUAGE}}" />
+</ul>
+</form>
+{% endblock %}
+

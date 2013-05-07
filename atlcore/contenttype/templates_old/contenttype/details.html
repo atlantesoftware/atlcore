@@ -1,0 +1,13 @@
+{% extends base_detail_template|default:"contenttype/base.html" %}
+{% load adminmedia i18n %}
+
+{% block content %}
+  <div id="content-main">
+
+  </div>  
+  {% if is_container and object_list %}
+  <div class="contents" id="contents">
+    {% include 'admin/includes/object_list.html' %}
+  </div>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,22 @@
+
+<div id="{{component.id}}" class="atl_component {{component.html_class}}">
+	<div class="atl_component_wrapper">
+		<div id="{{component.id}}_ajax_panel">
+			<div id="{{component.id}}_ajax_loading"><img src="/atlante_core_media/common/images/loading.gif" alt="Loading..." /></div>
+			<div id="{{component.id}}_ajax_success">
+				<div id="{{component.id}}_ajax_error_message">Mensaje</div>
+				
+			</div>
+			<div id="{{component.id}}_ajax_error">
+			</div>
+			<button onclick="atl_ajax_close_message('{{component.id}}')">ok</button>
+		</div>
+		<h3>{{component.title}}</h3>
+		<form id="{{component.id}}_form">
+			{% csrf_token %}
+			<label>{{component.label}}</label>
+			<input id="email" type="text" name="email" value="" />
+			<a id="{{component.id}}_form_submit" onclick="atl_ajax_request('/subscribe/', $('#{{component.id}}_form').serialize(), '{{component.id}}');">{{component.submit_button_text}}</a>
+		</form>
+	</div>
+</div>

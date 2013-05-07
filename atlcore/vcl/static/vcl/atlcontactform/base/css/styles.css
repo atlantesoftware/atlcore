@@ -1,0 +1,42 @@
+#AtlContactForm {
+	background-color: white; 
+}
+
+#AtlContactForm_wrapper {
+	width: 100%;
+	min-height: 400px;
+}
+
+#AtlContactForm_wrapper h2{
+	font-size:22px;
+	font-weight: normal; 
+	color: #282525;
+	margin-bottom: 12px;
+}
+#AtlContactForm_wrapper form input, #AtlContactForm_wrapper form textarea {
+	font-size: 14px;
+	color:#282828;
+	text-transform: lowercase;
+	background-color:#c3c3c3;
+	border:0px;
+	height: 27px;
+	width:100%;
+	padding:0;
+	margin-bottom: 10px;
+}
+
+#AtlContactForm_wrapper form textarea {
+	height: 179px;
+}
+
+#AtlContactForm_wrapper form div.captcha img{
+	float: left; 
+	margin-right: 6px;
+	height: 27px;
+	width: 65px;
+}
+
+#AtlContactForm_wrapper form input#id_captcha_1{
+	width: 116px;
+	float: left; 
+}	

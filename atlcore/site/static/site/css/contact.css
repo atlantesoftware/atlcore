@@ -1,0 +1,115 @@
+
+
+
+form#formContact {
+	padding:10px 40px ;
+	overflow:hidden;
+}
+
+
+div.formLeft {
+	width:35%;
+	float:left;
+	margin-right:10px;
+}
+
+div.formRight {
+	width:62%;
+	float:left;
+}
+
+form ul.errorlist li {
+	color:red;
+	list-style: none;
+}
+
+form p.error {
+	color:red;
+	clear:both;
+}
+
+form p {
+	color:#494949;
+	font-size:14px;
+	padding-bottom:8px;
+}
+
+
+form div.captcha input{
+	width:100px;
+	padding-left:5px;
+	height:28px;
+	border:none;
+	background-color:#dedede;
+	color:#434343;
+	margin-bottom:13px;
+	float:left;
+}
+
+form input.submit {
+	background-color: transparent;
+    border: medium none;
+    color: #1F1F1F;
+    cursor: pointer;
+    float: right;
+    font-size: 18px;
+	margin-right: 18px;
+    margin-top: 3px;
+    text-transform: uppercase;
+    width: auto;
+} 
+
+div#body_content form div.captcha {
+	background-image: url("../images/contact/border_contact_balls.png");
+    background-position: center top;
+    background-repeat: repeat-x;
+    height: 47px;
+    padding-left: 5px;
+    padding-top: 10px;
+    width: 504px;
+}
+
+
+form div.captcha img {
+	float: left;
+	margin-right:10px;
+}
+
+
+form input {
+	width:241px;
+	padding-left:5px;
+	height:29px;
+	border:none;
+	background-color:#dedede;
+	color:#434343;
+	margin-bottom:13px;
+}
+
+form textarea {
+	width:499px;
+	padding-left:5px;
+	padding-top:5px;
+	height:164px;
+	border:none;
+	background-color:#dedede;
+	color:#434343;
+	margin-bottom:13px;
+}
+
+
+.container {
+	background-color:#f2f2f2;
+}
+
+
+div.column_left {
+    float: left;
+    width: auto;
+}
+
+
+
+
+
+
